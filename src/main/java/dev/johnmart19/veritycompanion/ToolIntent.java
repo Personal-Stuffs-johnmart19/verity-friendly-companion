@@ -1,9 +1,9 @@
 package dev.johnmart19.veritycompanion;
 import java.util.Locale;
-/** Human gifting and enchanting intent in Russian and English. */
+/** Human gifting and enchanting intent with authored local request vocabulary. */
 final class ToolIntent {
  // Only human messages enter this policy. Model text must never create consent.
- static String normalized(String request){return request==null?"":request.toLowerCase(Locale.ROOT).replace('ё','е').replace('’','\'').trim().replaceAll("\\s+"," ");}
+ static String normalized(String request){return HumanIntentLexicon.policyText(request);}
  /** Remove only the configured companion name at the start of a human message. */
  static String unaddress(String request,String alias){
   String text=request==null?"":request.trim();String name=alias==null?"":alias.trim();
@@ -48,7 +48,7 @@ final class ToolIntent {
   for(String word:words)if(!word.matches("(?:[1-9][0-9]{0,3}|[a-z0-9_]+:[a-z0-9_/]+|стак(?:а|ов)?|штук(?:и)?|штуку|шт|один|одно|одну|два|две|три|четыре|пять|десять|пару|немного|побольше|еще|мне|пожалуйста|золот(?:ое|ые|ых|ой|ого)|зачарованн(?:ое|ые|ых|ого)|алмаз(?:ы|ов|а)?|изумруд(?:ы|ов|а)?|желез(?:о|а)|золот(?:о|а)|незерит(?:а|овый|овую|овое)?|яблок(?:о|а|и)?|ед(?:а|ы|у)|хлеб(?:а)?|стейк(?:и|ов|а)?|мяс(?:о|а)|морков(?:ь|и)|картошк(?:а|и|у)|печень(?:е|я)|рыб(?:а|ы|у)|уг(?:оль|ля)|кам(?:ень|ня)|дерев(?:о|а)|доск(?:и|а|ок)|меч(?:а)?|кирк(?:а|у|и)|топор(?:а)?|брон(?:я|ю|и)|факел(?:ы|ов)?|a|an|the|of|some|more|please|me|one|two|three|four|five|ten|stack|stacks|pieces|golden|enchanted|apple|apples|food|bread|steak|steaks|meat|carrot|carrots|potato|potatoes|fish|diamond|diamonds|emerald|emeralds|iron|gold|netherite|coal|stone|wood|planks|sword|pickaxe|axe|armor|torches)"))return false;
   return true;
  }
- static boolean giftAffirmation(String request){return normalized(request).matches("(?:да|ага|угу|конечно|давай|давай мне|да пожалуйста|да, пожалуйста|yes|yeah|yep|sure|yes please|yes, please|please do)[.! ]*");}
+ static boolean giftAffirmation(String request){return HumanIntentLexicon.affirmation(request)||normalized(request).matches("(?:да|ага|угу|конечно|давай|давай мне|да пожалуйста|да, пожалуйста|yes|yeah|yep|sure|yes please|yes, please|please do)[.! ]*");}
  static boolean ground(String request){String s=normalized(request);return !excludedGiftText(s)
   &&!s.matches("(?s).*(?:инвентар|inventory).*")
   &&s.matches("(?s).*(?:^|[^\\p{L}])(?:на землю|на пол|под ноги|брось|бросай|выброси|выбрось|выплюнь|выплюни|скинь|drop|spit|throw|on the ground|on the floor)(?:$|[^\\p{L}]).*");}

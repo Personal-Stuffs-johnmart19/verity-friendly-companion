@@ -6,7 +6,7 @@ import java.util.regex.*;
 /** Decisions depend on the original human message, never model explanations. */
 final class EffectPolicy {
  private EffectPolicy() {}
- static String text(String s) { return s == null ? "" : s.toLowerCase(Locale.ROOT).replace('ё','е').replace('’','\'').trim(); }
+ static String text(String s) { return HumanIntentLexicon.policyText(s); }
  static String nameRu(String id,String fallback){return switch(id){
   case "minecraft:night_vision" -> "Ночное зрение";case "minecraft:regeneration" -> "Регенерация";
   case "minecraft:saturation" -> "Насыщение";case "minecraft:hunger" -> "Голод";

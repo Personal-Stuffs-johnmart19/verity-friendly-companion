@@ -26,17 +26,17 @@ final class HorrorCommands {
   root.then(Commands.literal("threshold").requires(s->s.hasPermission(2)).then(Commands.argument("mood",IntegerArgumentType.integer(0,100)).executes(c->change(c.getSource(),o->o.moodThreshold=IntegerArgumentType.getInteger(c,"mood")))));
   root.then(Commands.literal("chance").requires(s->s.hasPermission(2)).then(Commands.argument("percent",IntegerArgumentType.integer(0,100)).executes(c->change(c.getSource(),o->o.chancePercent=IntegerArgumentType.getInteger(c,"percent")))));
   root.then(Commands.literal("cooldown").requires(s->s.hasPermission(2)).then(Commands.argument("seconds",IntegerArgumentType.integer(10,3600)).executes(c->change(c.getSource(),o->o.cooldownSeconds=IntegerArgumentType.getInteger(c,"seconds")))));
-  root.then(Commands.literal("stop").executes(c->{ServerPlayer p=c.getSource().getPlayerOrException();HorrorController.stop(p);p.sendSystemMessage(Component.literal(Relations.tr(p,"Текущий хоррор-эпизод остановлен. Режим сервера не изменён.","Your current horror encounter stopped. Server mode is unchanged.")));return 1;}));
+  root.then(Commands.literal("stop").executes(c->{ServerPlayer p=c.getSource().getPlayerOrException();HorrorController.stop(p);p.sendSystemMessage(Component.literal(ModTranslations.text(Relations.get(p).language,"verity_companion.horror_commands.your_current_horror_encounter_stopped_server_mode")));return 1;}));
   return root;
  }
  static int legacyBoss(CommandSourceStack source,boolean enabled){return change(source,o->{o.bossMode=enabled?"mood":"off";if(enabled&&o.mode.equals("off"))o.mode="mood";});}
  private static int change(CommandSourceStack source,java.util.function.Consumer<HorrorSettings.Options> edit){
-  try{HorrorSettings.update(edit);HorrorController.configurationChanged(source.getServer());source.sendSuccess(()->Component.literal(source.getEntity() instanceof ServerPlayer p?Relations.tr(p,"Настройки хоррора Verity сохранены.","Verity horror configuration saved."):"Verity horror configuration saved."),true);return status(source);}catch(IllegalArgumentException|IllegalStateException failure){source.sendFailure(Component.literal(failure.getMessage()));return 0;}
+  try{HorrorSettings.update(edit);HorrorController.configurationChanged(source.getServer());source.sendSuccess(()->Component.literal(ModTranslations.text(source.getEntity() instanceof ServerPlayer p?Relations.get(p).language:"en","verity_companion.horror_commands.verity_horror_configuration_saved")),true);return status(source);}catch(IllegalArgumentException|IllegalStateException failure){source.sendFailure(Component.literal(ModTranslations.text(source.getEntity() instanceof ServerPlayer p?Relations.get(p).language:"en","verity_companion.horror.config_failed")));return 0;}
  }
  private static int status(CommandSourceStack source){
   var o=HorrorSettings.get();ServerPlayer p=source.getEntity() instanceof ServerPlayer player?player:null;
-  boolean ru=p!=null&&Relations.get(p).language.equals("ru");
-  String text=(ru?"Хоррор: ":"Horror: ")+o.mode+"; boss="+o.bossMode+"; mood<="+o.moodThreshold+"; chance="+o.chancePercent+"%; cooldown="+o.cooldownSeconds+"s; darkness="+o.darkness+", fog="+o.fog+", sounds="+o.sounds+", stalker="+o.stalker+". "+(ru?"/companion horror mode off|mood|random; boss off|mood|random; event <имя> on|off; threshold 0 — только при настроении 0. Изменения — оператору; stop останавливает твой эпизод.":"/companion horror mode off|mood|random; boss off|mood|random; event <name> on|off; threshold 0 means mood zero only. Changes require operator; stop ends your encounter.");
+  String language=p==null?"en":Relations.get(p).language;
+  String text=ModTranslations.text(language,"verity_companion.horror.status",o.mode,o.bossMode,o.moodThreshold,o.chancePercent,o.cooldownSeconds,o.darkness,o.fog,o.sounds,o.stalker,ModTranslations.text(language,"verity_companion.horror_commands.companion_horror_mode_off_mood_random_boss"));
   source.sendSuccess(()->Component.literal(text),false);return 1;
  }
 }

@@ -18,12 +18,7 @@ public final class BuildJournalSummary {
   public Facts(boolean exists,boolean verified,int appliedBlocks,String dimension,String bounds,String status,String template,String style,String sourceAsset){this(exists,verified,appliedBlocks,dimension,bounds,status,template,style,sourceAsset,0,null);}
   public Facts(boolean exists,boolean verified,int appliedBlocks,String dimension,String bounds,String status,String template,String style,String sourceAsset,int floors){this(exists,verified,appliedBlocks,dimension,bounds,status,template,style,sourceAsset,floors,null);}
   public boolean canUndo(String currentDimension){return exists&&verified&&appliedBlocks>0&&dimension.equals(currentDimension);}
-  public String context(String currentDimension,String language){
-   if(!CompanionLanguage.isRussian(language))return context(currentDimension);
-   if(!exists)return "ЖУРНАЛ СТРОИТЕЛЬСТВА: Для этого игрока нет сохраненного журнала. Это ничего не говорит о других зданиях мира.";
-   if(!verified)return "ЖУРНАЛ СТРОИТЕЛЬСТВА: Журнал недоступен или не проверен ("+status+"). Не утверждай, что ничего не построено, и не изменяй неизвестные записи автоматически.";
-   return "ЖУРНАЛ СТРОИТЕЛЬСТВА: Подтвержденных сохраненных изменений="+appliedBlocks+"; dimension="+dimension+"; bounds="+bounds+"; template="+template+"; style="+style+"; wall_block="+(wallBlockKnown?(wallBlock.isEmpty()?"default":wallBlock):"unknown/legacy")+"; floors="+(floors>0?floors:"unknown/legacy")+"; "+(design==null?"":design.context())+"source_asset="+sourceAsset+"; undo_in_current_dimension="+canUndo(currentDimension)+". Это журнал, не осмотр мира. undo_build перепроверяет блоки и права; чужие блоки не удаляются. Пустой журнал не означает пустой мир.";
-  }
+  public String context(String currentDimension,String language){return context(currentDimension);}
   public String context(String currentDimension){
    if(!exists)return "BUILD JOURNAL FACTS: No saved build journal exists for this player. This says nothing about unrelated world buildings.";
    if(!verified)return "BUILD JOURNAL FACTS: A journal exists but is unavailable or unverified: "+status+". Do not claim nothing was built. Do not overwrite or undo legacy/unknown entries automatically.";

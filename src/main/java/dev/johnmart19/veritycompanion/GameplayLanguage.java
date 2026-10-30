@@ -7,6 +7,6 @@ final class GameplayLanguage {
   return s.matches("(?s).*(?:боже|господи|god|lord).*?(?:дай|give).*?(?:сил(?:ы)?|strength).*" )
    &&!s.matches("(?s).*(?:эффект|баф|зель|buff|effect|potion|minecraft:strength|уровень|level).*" );
  }
- static String hint(String text){return idiomaticStrength(text)?"The human's 'Боже, дай мне сил' is an idiom expressing frustration, not a request for a Minecraft Strength effect. Respond warmly in character; do not demand an effect ID or cast anything.":"";}
- static String hint(String text,String language){return CompanionLanguage.isRussian(language)?(idiomaticStrength(text)?"«Боже, дай мне сил» — выражение досады, не просьба об эффекте силы Minecraft. Ответь тепло в образе; не требуй ID эффекта и ничего не применяй.":""):hint(text);}
+ static String hint(String text){return idiomaticStrength(text)?"The human is expressing frustration, not requesting a Minecraft Strength effect. Respond warmly in character; do not demand an effect ID or cast anything.":"";}
+ static String hint(String text,String language){return hint(text);}
 }

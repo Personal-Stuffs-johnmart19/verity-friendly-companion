@@ -13,7 +13,7 @@ public final class HeldItemTools {
   boolean enabled=args.has("enabled")?args.get("enabled").getAsBoolean():true;
   if(enabled!=requested)throw new IllegalArgumentException("Durability change does not match your request");
   ItemStack stack=p.getMainHandItem();Integer max=stack.get(DataComponents.MAX_DAMAGE);
-  if(stack.isEmpty()||max==null||max<=0)throw new IllegalArgumentException(Relations.tr(p,"Возьми инструмент с прочностью в основную руку.","Hold a damageable tool in your main hand."));
+  if(stack.isEmpty()||max==null||max<=0)throw new IllegalArgumentException(ModTranslations.text(Relations.get(p).language,"verity_companion.held_item_tools.hold_a_damageable_tool_in_your_main"));
   boolean matches=switch(HeldItemPolicy.requestedKind(original)){
    case "pickaxe"->stack.is(ItemTags.PICKAXES)||stack.getItem() instanceof PickaxeItem;
    case "sword"->stack.is(ItemTags.SWORDS)||stack.getItem() instanceof SwordItem;
@@ -22,9 +22,9 @@ public final class HeldItemTools {
    case "hoe"->stack.is(ItemTags.HOES)||stack.getItem() instanceof HoeItem;
    case "held"->true;default->false;
   };
-  if(!matches)throw new IllegalArgumentException(Relations.tr(p,"Возьми в руку тот инструмент, который нужно изменить.","Hold the tool you want to change."));
+  if(!matches)throw new IllegalArgumentException(ModTranslations.text(Relations.get(p).language,"verity_companion.held_item_tools.hold_the_tool_you_want_to_change"));
   if(enabled)stack.set(DataComponents.UNBREAKABLE,new Unbreakable(true));else stack.remove(DataComponents.UNBREAKABLE);
   p.containerMenu.broadcastChanges();
-  return enabled?Relations.tr(p,"Готово: предмет в руке больше не теряет прочность.","Done: your held item no longer loses durability."):Relations.tr(p,"Вернул обычный износ предмета в руке.","Restored normal durability loss for your held item.");
+  return enabled?ModTranslations.text(Relations.get(p).language,"verity_companion.held_item_tools.done_your_held_item_no_longer_loses"):ModTranslations.text(Relations.get(p).language,"verity_companion.held_item_tools.restored_normal_durability_loss_for_your_held");
  }
 }

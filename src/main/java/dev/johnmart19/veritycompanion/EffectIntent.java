@@ -11,7 +11,7 @@ final class EffectIntent {
  private static boolean live(Pending p,long now){return p!=null&&now>=p.opened()&&now-p.opened()<WINDOW_MILLIS;}
  private static void sweep(long now){REQUESTS.entrySet().removeIf(e->!live(e.getValue(),now));}
  private static String raw(String text){return text==null?"":text;}
- private static boolean affirmation(String text){return EffectPolicy.text(text).matches("(?:да|ага|угу|давай|конечно|да пожалуйста|да, пожалуйста|yes|yeah|yep|sure|yes please|yes, please|please do)[.! ]*");}
+ private static boolean affirmation(String text){return HumanIntentLexicon.affirmation(text)||EffectPolicy.text(text).matches("(?:да|ага|угу|давай|конечно|да пожалуйста|да, пожалуйста|yes|yeah|yep|sure|yes please|yes, please|please do)[.! ]*");}
  private static boolean direct(String human){return EffectPolicy.applyIntent(human)
   &&(EffectPolicy.effectWords(human)||!EffectPolicy.namedIds(human).isEmpty());}
  /** Deliberately limited noun list: questions, other chat and assistant suggestions cannot expand consent. */
@@ -70,9 +70,7 @@ final class EffectIntent {
   sweep(now);Pending p=REQUESTS.get(player);
   if(!live(p,now)||!p.current().equals(raw(current)))return "";
   Set<String> ids=EffectPolicy.namedIds(p.effective());
-  if(CompanionLanguage.isRussian(language))return "Контекст эффектов из слов человека: "+(ids.isEmpty()?"Человек попросил эффекты, но пока не назвал их. Спроси какие; одно подтверждение не выбирает эффекты, предложенные ассистентом.":
-   "Человек явно попросил: "+String.join(", ",ids)+". Сообщение продолжает его просьбу. Примени каждый через apply_effect без повторного согласия; длительность/уровень не обязательны. "+
-   (EffectPolicy.infiniteRequested(p.effective())?"Запрошено навсегда: infinite=true (родная длительность -1), не большое конечное время. ":"Обычно 60 секунд, уровень I. ")+"Повысить пределы могут только длительность/уровень, указанные человеком.");
+
   return "Server human-only effect context: "+(ids.isEmpty()?"The human asked for effects but has not named any yet. Ask which effects; an affirmation cannot select assistant-suggested effects.":
    "The human explicitly requested these effects: "+String.join(", ",ids)+". This message continues that human request. Apply each requested effect through apply_effect; do not ask for repeated consent or require an explicit duration or level. "+
    (EffectPolicy.infiniteRequested(p.effective())?"The human explicitly requested permanent effects: use infinite=true (native duration -1), never a large finite duration. ":"Defaults are 60 seconds, level I. ")+"Only human-specified duration/level can increase the limits.");

@@ -9,7 +9,7 @@ final class CompanionChatIntent {
  private CompanionChatIntent(){}
  static String request(String human){
   if(human==null||human.length()>512)return "";
-  String s=human.strip().replaceFirst("(?iu)^(?:please|пожалуйста)[,! ]+","");
+  String s=HumanIntentLexicon.request(human).strip().replaceFirst("(?iu)^(?:please|пожалуйста)[,! ]+","");
   if(s.matches("(?s).*[\"«»„“”`\\n\\r].*")||s.startsWith("'")||s.endsWith("'"))return "";
   boolean polite=s.matches("(?iu)^(?:can you|could you|would you|можешь|можете|мог бы ты|могла бы ты)\\s+.*");
   if(s.contains("?")&&!polite)return "";

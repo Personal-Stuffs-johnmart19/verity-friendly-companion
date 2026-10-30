@@ -23,11 +23,11 @@ public final class ClientMicrophoneDevices {
   return resolve(DEVICES,selected);
  }
  static Mixer.Info resolve(List<Mixer.Info> devices,String selection){return selection.isEmpty()?null:devices.stream().filter(info->identity(info).equals(selection)).findFirst().orElse(null);}
- public static synchronized String label(){var info=selected();return info==null?(selected.isEmpty()?"OS default":"Saved input unavailable; OS default"):info.getName();}
+ public static synchronized String label(){var info=selected();return info==null?(selected.isEmpty()?ModTranslations.component("verity_companion.microphone.default_device").getString():ModTranslations.component("verity_companion.microphone.unavailable_device").getString()):info.getName();}
  public static synchronized void cycle(){
   int index=-1;for(int i=0;i<DEVICES.size();i++)if(identity(DEVICES.get(i)).equals(selected)){index=i;break;}
   selected=index+1<DEVICES.size()?identity(DEVICES.get(index+1)):"";
   try{var preference=new Preference();preference.device=selected;SafeJsonStore.save(PATH,new com.google.gson.Gson(),Preference.class,preference,p->{if(p.device==null||p.device.length()>2048)throw new IllegalArgumentException("Invalid microphone preference");});}catch(Exception failure){System.err.println("[Verity Companion] microphone selection could not be saved");}
-  var mc=Minecraft.getInstance();if(mc.player!=null)mc.player.displayClientMessage(Component.literal((mc.options.languageCode.startsWith("ru")?"Микрофон: ":"Microphone: ")+label()),false);
+  var mc=Minecraft.getInstance();if(mc.player!=null)mc.player.displayClientMessage(ModTranslations.component("verity_companion.microphone.selected_device",label()),false);
  }
 }

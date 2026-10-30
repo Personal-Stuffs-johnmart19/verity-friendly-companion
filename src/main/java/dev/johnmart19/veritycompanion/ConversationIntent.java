@@ -17,7 +17,7 @@ final class ConversationIntent {
  /** Call once at the human-message boundary, before starting model/tool processing. */
  static synchronized boolean begin(UUID player,String request,long now){
   sweep(now);if(player==null)return false;
-  String current=ToolIntent.normalized(request);
+  String current=request==null?"":request;
   boolean direct=ToolIntent.gifting(request);
   Pending prior=GIFTS.get(player);
   if(live(prior,now)&&prior.established()&&ToolIntent.giftDetail(request)&&ToolIntent.hasQuantity(request))direct=false;
@@ -40,7 +40,7 @@ final class ConversationIntent {
  /** Recheck the exact human request being processed. This method never opens a window. */
  static synchronized boolean allowsGift(UUID player,String request,long now){
   sweep(now);Pending p=GIFTS.get(player);
-  return live(p,now)&&p.allowed()&&p.current().equals(ToolIntent.normalized(request));
+  return live(p,now)&&p.allowed()&&p.current().equals(request==null?"":request);
  }
 
  static synchronized String context(UUID player,String request,long now){
@@ -49,7 +49,7 @@ final class ConversationIntent {
  static synchronized String context(UUID player,String request,long now,String language){
   if(!allowsGift(player,request,now))return "";
   Pending p=GIFTS.get(player);
-  if(CompanionLanguage.isRussian(language))return (p.followup()?"Контекст сервера: игрок недавно попросил предмет/еду. Это сообщение человека продолжает просьбу; естественно уточни предмет/количество или учти подтверждение. Кодовое слово не нужно; соблюдай лимиты выдачи. ":"Контекст сервера: человек просит выдать предмет, в том числе обычной фразой с количеством. Кодовое слово не нужно. ")+(p.ground()?"Игрок попросил выдачу на землю.":"Выдай в инвентарь: на землю игрок не просил.");
+
   return (p.followup()?"Server context: The player recently requested an item or food gift. This human message continues that request; resolve the item/count or affirmation naturally. No special gift keyword is required. Follow existing gift limits. ":"Server context: The current human message is an ordinary item delivery request, including item-and-count wording. No special gift keyword is required. ")+(p.ground()?"The player requested delivery on the ground.":"Use inventory delivery; the player has not requested ground delivery.");
  }
 

@@ -3,6 +3,7 @@ import java.net.*;import java.net.http.*;import java.time.Duration;import java.n
 final class WebTools {
  static final HttpClient HTTP=HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).followRedirects(HttpClient.Redirect.NEVER).build();
  static String fetch(String url)throws Exception{
+  if(ServerBridge.nativeRuntime()&&!NativeRuntime.get().externalAllowed())throw new IOException("External web requests disabled by server configuration");
   URI uri=URI.create(url);for(int redirect=0;redirect<4;redirect++){
    if(!"https".equalsIgnoreCase(uri.getScheme())||uri.getHost()==null||uri.getUserInfo()!=null||(uri.getPort()!=-1&&uri.getPort()!=443))throw new IllegalArgumentException("Only public HTTPS URLs on port 443 are allowed");
    for(InetAddress ip:InetAddress.getAllByName(uri.getHost())){byte[] b=ip.getAddress();if(ip.isAnyLocalAddress()||ip.isLoopbackAddress()||ip.isLinkLocalAddress()||ip.isSiteLocalAddress()||ip.isMulticastAddress()||(b.length==16&&((b[0]&254)==252))||(b.length==4&&((b[0]&255)==100&&(b[1]&255)>=64&&(b[1]&255)<=127)))throw new IllegalArgumentException("Private/local network URLs are not web sources");}

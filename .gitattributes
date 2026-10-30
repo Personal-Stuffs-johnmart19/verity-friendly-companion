@@ -1,0 +1,6 @@
+# Keep packaged text identical in GitHub source ZIPs and Windows checkouts.
+*.json text eol=lf
+*.js text eol=lf
+*.sh text eol=lf
+*.toml text eol=lf
+LICENSE text eol=lf

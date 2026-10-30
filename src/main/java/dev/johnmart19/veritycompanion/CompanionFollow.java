@@ -27,12 +27,12 @@ public final class CompanionFollow {
   NeoForge.EVENT_BUS.addListener((LivingDeathEvent e)->{if(e.getEntity() instanceof ServerPlayer p)stop(p);});
  }
  static String set(ServerPlayer player,boolean enabled){
-  if(!enabled){stop(player);return Relations.tr(player,"Следование выключено.","Following disabled.");}
+  if(!enabled){stop(player);return ModTranslations.text(Relations.get(player).language,"verity_companion.companion_follow.following_disabled");}
   Entity entity=CompanionPresence.ownedBody(player);
-  if(!(entity instanceof PathfinderMob mob))return Relations.tr(player,"Твой Verity не найден рядом в загруженной области. /companion come или summon, затем follow.","Your owned Verity was not found nearby in loaded chunks. Use /companion come or summon, then follow.");
-  if(!player.isAlive()||player.isSpectator())return Relations.tr(player,"Следование доступно живому игроку вне режима наблюдателя.","Following requires a living player outside spectator mode.");
+  if(!(entity instanceof PathfinderMob mob))return ModTranslations.text(Relations.get(player).language,"verity_companion.companion_follow.your_owned_verity_was_not_found_nearby");
+  if(!player.isAlive()||player.isSpectator())return ModTranslations.text(Relations.get(player).language,"verity_companion.companion_follow.following_requires_a_living_player_outside_spectator");
   stop(player);mob.setNoAi(false);mob.setTarget(null);ACTIVE.put(player.getUUID(),new Following(mob.getUUID(),player.level().dimension()));ORDER.addLast(player.getUUID());
-  return Relations.tr(player,"Иду за тобой. /companion stay или follow off — остановиться. Только эта сессия; до 24 блоков, по загруженному пути, без телепортации.","Following you. /companion stay or follow off stops it. This session only; up to 24 blocks along loaded paths, without teleporting.");
+  return ModTranslations.text(Relations.get(player).language,"verity_companion.companion_follow.following_you_companion_stay_or_follow_off");
  }
  static void stop(ServerPlayer player){remove(player.getServer(),player.getUUID());ORDER.remove(player.getUUID());}
  private static void remove(MinecraftServer server,UUID owner){

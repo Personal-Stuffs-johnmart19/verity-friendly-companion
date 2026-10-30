@@ -14,11 +14,11 @@ final class CompanionChatActions {
    JsonObject args=new JsonObject();if(c.field().equals("tts"))args.addProperty("tts",Boolean.parseBoolean(c.value()));else args.addProperty(c.field(),c.value());
    persona(p,args,original);
    return switch(c.field()){
-    case "tts"->Relations.tr(p,"Озвучка ","Voice replies ")+(c.value().equals("true")?Relations.tr(p,"включена.","enabled."):Relations.tr(p,"выключена.","disabled."));
-    case "language"->Relations.tr(p,"Буду отвечать по-русски.","I will reply in English.");
-    case "voice"->Relations.tr(p,"Буду использовать голос ","I will use the voice ")+TtsCommands.normalize(c.value())+".";
-    case "gender"->Relations.tr(p,"Теперь буду говорить о себе в ","My persona is now ")+(c.value().equals("female")?Relations.tr(p,"женском роде.","female."):c.value().equals("male")?Relations.tr(p,"мужском роде.","male."):Relations.tr(p,"нейтральном роде.","neutral."));
-    default->Relations.tr(p,"Роль обновлена. Внешняя модель не менялась.","Role updated. The visual model is unchanged.");
+    case "tts"->ModTranslations.text(Relations.replyLanguage(p),"verity_companion.companion_chat_actions.voice_replies")+(c.value().equals("true")?ModTranslations.text(Relations.replyLanguage(p),"verity_companion.companion_chat_actions.enabled"):ModTranslations.text(Relations.replyLanguage(p),"verity_companion.companion_chat_actions.disabled"));
+    case "language"->ModTranslations.text(Relations.replyLanguage(p),"verity_companion.companion_chat_actions.i_will_reply_in_english");
+    case "voice"->ModTranslations.text(Relations.replyLanguage(p),"verity_companion.companion_chat_actions.i_will_use_the_voice")+TtsCommands.normalize(c.value())+".";
+    case "gender"->ModTranslations.text(Relations.replyLanguage(p),"verity_companion.companion_chat_actions.my_persona_is_now")+(c.value().equals("female")?ModTranslations.text(Relations.replyLanguage(p),"verity_companion.companion_chat_actions.female"):c.value().equals("male")?ModTranslations.text(Relations.replyLanguage(p),"verity_companion.companion_chat_actions.male"):ModTranslations.text(Relations.replyLanguage(p),"verity_companion.companion_chat_actions.neutral"));
+    default->ModTranslations.text(Relations.replyLanguage(p),"verity_companion.companion_chat_actions.role_updated_the_visual_model_is_unchanged");
    };
   }),"happy");
  }

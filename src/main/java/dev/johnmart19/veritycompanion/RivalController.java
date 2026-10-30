@@ -25,11 +25,11 @@ public final class RivalController {
   var type=BuiltInRegistries.ENTITY_TYPE.entrySet().stream().filter(e->e.getKey().location().getNamespace().equals("verity")&&e.getKey().location().getPath().contains("demon")).map(Map.Entry::getValue).findFirst().orElseThrow();
   Entity raw=type.create(p.serverLevel());if(!(raw instanceof PathfinderMob mob))return;
   boolean space=false;for(int r=4;r<=8&&!space;r++)for(int dx=-r;dx<=r&&!space;dx++)for(int dz=-r;dz<=r&&!space;dz++){if(Math.abs(dx)!=r&&Math.abs(dz)!=r)continue;var pos=p.blockPosition().offset(dx,0,dz);if(!p.serverLevel().hasChunkAt(pos))continue;mob.moveTo(pos.getX()+.5,pos.getY(),pos.getZ()+.5,p.getYRot(),0);space=p.serverLevel().noCollision(mob)&&p.serverLevel().getBlockState(pos.below()).isSolid();}if(!space)return;
-  data(mob).putUUID(OWNER,p.getUUID());mob.setPersistenceRequired();mob.setCustomName(Component.literal(Relations.name(p)+Relations.tr(p," — обиженный соперник"," — offended rival")));mob.setCustomNameVisible(true);
+  data(mob).putUUID(OWNER,p.getUUID());mob.setPersistenceRequired();mob.setCustomName(Component.literal(Relations.name(p)+ModTranslations.text(Relations.get(p).language,"verity_companion.rival_controller.offended_rival")));mob.setCustomNameVisible(true);
   if(mob.getAttribute(Attributes.MAX_HEALTH)!=null)mob.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100);mob.setHealth(mob.getMaxHealth());mob.setTarget(null);
   HorrorController.pose(mob,1);if(!p.serverLevel().addFreshEntity(mob))return;ACTIVE.put(p.getUUID(),mob);
   ServerBossEvent bar=new ServerBossEvent(mob.getName(),BossEvent.BossBarColor.RED,BossEvent.BossBarOverlay.NOTCHED_10);bar.addPlayer(p);BARS.put(p.getUUID(),bar);
-  p.sendSystemMessage(Component.literal(HorrorController.moodEncounter(p)?Relations.tr(p,"Настроение упало до порога боя. Этот соперник сражается только с тобой. После боя поговорим.","My mood reached the encounter threshold. This rival fights only you. We can talk after the fight."):Relations.tr(p,"Начался случайный бой с Verity. Этот соперник сражается только с тобой.","A random Verity encounter started. This rival fights only you.")));
+  p.sendSystemMessage(Component.literal(HorrorController.moodEncounter(p)?ModTranslations.text(Relations.get(p).language,"verity_companion.rival_controller.my_mood_reached_the_encounter_threshold_this"):ModTranslations.text(Relations.get(p).language,"verity_companion.rival_controller.a_random_verity_encounter_started_this_rival")));
  }
  /** Invoked after vanilla PathfinderMob.tick; original subclass tick never executes. */
  public static void tick(Entity entity){
@@ -53,7 +53,7 @@ public final class RivalController {
   if(entity.level().isClientSide)return false;ServerPlayer p=owner(entity);if(!(entity instanceof LivingEntity mob)||p==null||source.getEntity()!=p||Float.isNaN(ignored)||ignored<=0)return false;
   if(ACTIVE.get(p.getUUID())!=entity)return false;long now=entity.level().getGameTime();long last=LAST_HIT.getOrDefault(p.getUUID(),Long.MIN_VALUE/2);if(now-last<10)return false;LAST_HIT.put(p.getUUID(),now);
   mob.setHealth(Math.max(0,mob.getHealth()-mob.getMaxHealth()*.125f));mob.hurtTime=10;mob.hurtMarked=true;
-  if(mob.getHealth()<=0){boolean offended=Relations.get(p).state.reconciliation;if(offended)Relations.defeated(p);remove(p.getUUID());p.sendSystemMessage(Component.literal(offended?Relations.tr(p,"Ты победил. Я немного успокоился, но помощь вернётся после примирения и извинений.","You won. I have calmed down a little, but we need a conversation and an apology before I help again."):Relations.tr(p,"Ты победил в случайном бою. Хорошая схватка!","You won the random encounter. Good fight!")));}return true;
+  if(mob.getHealth()<=0){boolean offended=Relations.get(p).state.reconciliation;if(offended)Relations.defeated(p);remove(p.getUUID());p.sendSystemMessage(Component.literal(offended?ModTranslations.text(Relations.get(p).language,"verity_companion.rival_controller.you_won_i_have_calmed_down_a"):ModTranslations.text(Relations.get(p).language,"verity_companion.rival_controller.you_won_the_random_encounter_good_fight")));}return true;
  }
  static void remove(UUID id){LivingEntity entity=ACTIVE.remove(id);if(entity!=null)entity.discard();ServerBossEvent bar=BARS.remove(id);if(bar!=null)bar.removeAllPlayers();LAST_HIT.remove(id);}
  static void clear(){for(UUID id:new ArrayList<>(ACTIVE.keySet()))remove(id);}

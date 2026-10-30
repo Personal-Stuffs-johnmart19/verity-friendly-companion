@@ -28,11 +28,13 @@ public final class BuildOutcome {
  }
  private static String string(JsonObject object,String key){JsonElement value=object.get(key);if(value==null||!value.isJsonPrimitive()||!value.getAsJsonPrimitive().isString())throw new IllegalArgumentException("Missing string");return value.getAsString();}
  private static long count(JsonObject object,String key){JsonElement value=object.get(key);if(value==null||!value.isJsonPrimitive()||!value.getAsJsonPrimitive().isNumber())throw new IllegalArgumentException("Missing count");long count=new BigDecimal(value.getAsString()).longValueExact();if(count<0)throw new IllegalArgumentException("Negative count");return count;}
- public String reply(boolean ru){
-  String reason=switch(status){case "cancelled"->ru?"Строительство остановлено. ":"Construction cancelled. ";case "timeout"->ru?"Время строительства истекло. ":"Construction timed out. ";default->"";};
-  if(placed==0)return reason+(ru?"Блоки не изменены; постройка не подтверждена.":"No blocks changed; the build is not confirmed.")+(skipped>0?(ru?" Пропущено блоков: ":" Skipped blocks: ")+skipped+".":"");
+ public String reply(boolean ru){return reply(ru?"ru":"en");}
+ public String reply(String language){
+  String reason=switch(status){case "cancelled"->ModTranslations.text(language,"verity_companion.build_outcome.construction_cancelled");case "timeout"->ModTranslations.text(language,"verity_companion.build_outcome.construction_timed_out");default->"";};
+  String skippedText=skipped>0?ModTranslations.text(language,"verity_companion.build_outcome.skipped_count",skipped):"";
+  if(placed==0)return reason+ModTranslations.text(language,"verity_companion.build_outcome.no_blocks_changed_the_build_is_not")+skippedText;
   boolean partial=!status.equals("completed")||skipped>0||placed<planned;
-  String prefix=ru?(partial?"Постройка размещена частично: изменено ":"Постройка размещена: изменено "):(partial?"Build placed partially: applied ":"Build placed: applied ");
-  return reason+prefix+placed+(ru?" блоков.":" block changes.")+(skipped>0?(ru?" Пропущено блоков: ":" Skipped blocks: ")+skipped+".":"")+(partial?(ru?" План: ":" Planned: ")+planned+".":"")+(ru?" Координаты: ":" Coordinates: ")+dimension+" "+bounds+". "+(ru?"Проверь, что форма постройки соответствует запросу.":"Check that the structure matches your request.");
+  String applied=partial?ModTranslations.text(language,"verity_companion.build_outcome.partial_count",placed):ModTranslations.text(language,"verity_companion.build_outcome.completed_count",placed);
+  return reason+applied+skippedText+(partial?ModTranslations.text(language,"verity_companion.build_outcome.planned_count",planned):"")+ModTranslations.text(language,"verity_companion.build_outcome.location",dimension,bounds);
  }
 }

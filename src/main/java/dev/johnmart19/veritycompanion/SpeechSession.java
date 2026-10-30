@@ -63,8 +63,10 @@ public final class SpeechSession {
    // once closed, no delayed positive heartbeat can be sent after the final zero.
    if(finalUpdate)Thread.interrupted();
    try{
+    NativeRuntime.get().presence(count);
+    if(!ServerBridge.needsSpeechBridge()){if(finalUpdate)return;sentRevision=sendingRevision;nextHeartbeat=System.nanoTime()+20_000_000_000L;continue;}
     var config=ServerBridge.config();JsonObject body=new JsonObject();body.addProperty("session",session);body.addProperty("players",count);body.addProperty("revision",sendingRevision);
-    var request=HttpRequest.newBuilder(URI.create(config.endpoint+"/stt-session")).timeout(Duration.ofSeconds(2)).header("Authorization","Bearer "+ServerBridge.token()).header("Content-Type","application/json").POST(HttpRequest.BodyPublishers.ofString(body.toString())).build();
+    var request=HttpRequest.newBuilder(URI.create(ProviderHttp.loopback(config.endpoint)+"/stt-session")).timeout(Duration.ofSeconds(2)).header("Authorization","Bearer "+ServerBridge.token()).header("Content-Type","application/json").POST(HttpRequest.BodyPublishers.ofString(body.toString())).build();
     int status=ServerBridge.HTTP.send(request,HttpResponse.BodyHandlers.discarding()).statusCode();
     if(status!=200)throw new java.io.IOException("Speech session rejected");warned=false;
    }catch(InterruptedException ignored){Thread.interrupted();}

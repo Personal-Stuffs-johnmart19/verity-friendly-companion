@@ -73,10 +73,11 @@ public final class StructureCatalog {
   return new Preset(k,s,w,l,Math.max(compound?9:5,4*floors+1),floors);
  }
  public static String catalog(){return catalog("");}
- public static String catalog(String kind){
+ public static String catalog(String kind){return catalog(kind,"en");}
+ public static String catalog(String kind,String language){
   String selected=kind==null?"":canonical(kind);
-  StringBuilder out=new StringBuilder("Original functional templates (not imported schematics). Sizes: small, medium, large. Styles: "+String.join(", ",STYLES)+".\n");
-  for(String k:KINDS){if(!selected.isEmpty()&&!selected.equals(k))continue;out.append(k).append(": ");for(String size:List.of("small","medium","large")){Preset p=preset(k,size,0);out.append(size).append(' ').append(p.width).append('x').append(p.length).append('x').append(p.height).append(" / ").append(p.floors).append(" floors / budget ").append(p.volume()).append("; ");}out.append('\n');}
-  return out.append("Floors may be explicitly 1..32; occupied buildings need height >= floors*4+1 and width/length >=11. Nine floors have 3 clear interior blocks per floor and connected stair landings. Utilities are empty fresh blocks; no stocked inventories, entities, powered machines, crops or fluid systems are promised. Placement remains subject to loaded chunks, build budget, claims and actual completion/undo journal.\n").toString();
+  StringBuilder out=new StringBuilder(ModTranslations.text(language,"verity_companion.structures.header",String.join(", ",STYLES)));
+  for(String k:KINDS){if(!selected.isEmpty()&&!selected.equals(k))continue;out.append(k).append(": ");for(String size:List.of("small","medium","large")){Preset p=preset(k,size,0);out.append(size).append(' ').append(p.width).append('x').append(p.length).append('x').append(p.height).append(" / ").append(p.floors).append(ModTranslations.text(language,"verity_companion.structures.floor_budget")).append(p.volume()).append("; ");}out.append('\n');}
+  return out.append(ModTranslations.text(language,"verity_companion.structures.footer")).toString();
  }
 }

@@ -20,6 +20,13 @@ final class SchematicLibrary {
   var plan=NativeSchematicAdapter.read(ROOT,file,p.serverLevel().holderLookup(Registries.BLOCK),CompanionBrain.settings.maxBlocksPerBuild,NativeSchematicAdapter.Mode.DECORATIVE);
   if(CACHE.size()>=32)CACHE.clear();CACHE.put(file,new Cached(size,modified,plan));return plan;
  }
+ static String summary(ServerPlayer p){
+  JsonObject result=JsonParser.parseString(list(p)).getAsJsonObject();String language=Relations.get(p).language;
+  JsonArray rows=result.getAsJsonArray("schematics");StringBuilder out=new StringBuilder(ModTranslations.text(language,"verity_companion.schematics.heading",rows.size(),result.get("matched"),result.get("next_offset")));
+  for(JsonElement element:rows)out.append('\n').append(element.getAsJsonObject().get("file").getAsString());
+  if(rows.isEmpty())out.append('\n').append(ModTranslations.text(language,"verity_companion.schematics.empty"));
+  return out.append('\n').append(ModTranslations.text(language,"verity_companion.schematics.note")).toString();
+ }
  static String list(ServerPlayer p){return list(p,new JsonObject());}
  static String list(ServerPlayer p,JsonObject args){JsonObject out=new JsonObject();List<String> names=new ArrayList<>();String query=CompanionBrain.string(args,"query","").toLowerCase(Locale.ROOT),source=CompanionBrain.string(args,"source","all");
   if(!Set.of("all","local","native").contains(source))throw new IllegalArgumentException("source: all, local or native");

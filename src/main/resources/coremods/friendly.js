@@ -36,7 +36,10 @@ function initializeCoreMod() {
                 if(n === 'getSelectedMicrophone') replace(m,[new Call(O.INVOKESTATIC,'dev/johnmart19/veritycompanion/ClientMicrophoneDevices','selected','()Ljavax/sound/sampled/Mixer$Info;',false),new Insn(O.ARETURN)]);
                 if(n === 'cycleMicrophone') replace(m,[new Call(O.INVOKESTATIC,'dev/johnmart19/veritycompanion/ClientMicrophoneDevices','cycle','()V',false),new Insn(O.RETURN)]);
             }
-            if (name.endsWith('/KeybindRegistry') && n === '<clinit>') { var keys=m.instructions.toArray(); for(var q=0;q<keys.length;q++)if(keys[q].getOpcode()===O.BIPUSH && keys[q].operand===86)keys[q].operand=82; }
+            if (name.endsWith('/KeybindRegistry') && n === '<clinit>') { var keys=m.instructions.toArray(); for(var q=0;q<keys.length;q++){
+                if(keys[q].getOpcode()===O.BIPUSH && keys[q].operand===86)keys[q].operand=82;
+                if(keys[q].getOpcode()===O.LDC){var label=String(keys[q].cst);if(label==='key.verity.push_to_talk')keys[q].cst='key.verity_companion.push_to_talk';else if(label==='key.verity.cycle_mic')keys[q].cst='key.verity_companion.cycle_mic';else if(label==='category.verity.keys')keys[q].cst='category.verity_companion.keys';}
+            } }
             if (name.endsWith('/AiAPI')) {
                 if (n === 'askGroq') replace(m, [new Var(O.ALOAD,0),new Var(O.ALOAD,1),new Call(O.INVOKESTATIC,'dev/johnmart19/veritycompanion/CompanionBrain','ask','(Lnet/minecraft/world/entity/Entity;Ljava/lang/String;)Ljava/lang/String;',false),new Insn(O.ARETURN)]);
                 if (n === 'getApiKey') replace(m,[new Ldc(''),new Insn(O.ARETURN)]);
@@ -58,7 +61,10 @@ function initializeCoreMod() {
             if (name.endsWith('/ModClientEvents') && (n === 'onClientTick' || n === 'onScreenInit')) noop(m);
             if (name.endsWith('/VerityItem') && n === 'onDestroyed') noop(m);
             if (name.endsWith('/ModEvents') && n === 'lambda$onPlayerInteract$2') {
-                var boxInstructions=m.instructions.toArray();for(var bi=0;bi<boxInstructions.length;bi++)if(boxInstructions[bi].getOpcode()===O.ASTORE && boxInstructions[bi].var===4){var claim=new List();claim.add(new Var(O.ALOAD,4));claim.add(new Var(O.ALOAD,2));claim.add(new Var(O.ALOAD,1));claim.add(new Call(O.INVOKESTATIC,'dev/johnmart19/veritycompanion/CompanionItemLifecycle','claimBoxBody','(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;)V',false));m.instructions.insert(boxInstructions[bi],claim);break;}
+                // The original callback positions the body with blockPosition(),
+                // which clips it into paths/slabs. Restore exact coordinates after
+                // that move, before the native jump animation is triggered.
+                var boxInstructions=m.instructions.toArray();for(var bi=0;bi<boxInstructions.length;bi++)if(boxInstructions[bi].getOpcode()===O.INVOKEVIRTUAL && boxInstructions[bi].owner==='varmite/verity/entity/custom/VerityEntity' && boxInstructions[bi].name==='moveTo' && boxInstructions[bi].desc==='(DDDFF)V'){var claim=new List();claim.add(new Var(O.ALOAD,4));claim.add(new Var(O.ALOAD,2));claim.add(new Var(O.ALOAD,1));claim.add(new Call(O.INVOKESTATIC,'dev/johnmart19/veritycompanion/CompanionItemLifecycle','claimBoxBody','(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;)V',false));m.instructions.insert(boxInstructions[bi],claim);break;}
             }
             if (name.endsWith('/ModEvents') && n === 'onDespawn') replace(m,[new Var(O.ALOAD,0),new Call(O.INVOKESTATIC,'dev/johnmart19/veritycompanion/CompanionItemLifecycle','expired','(Lnet/neoforged/neoforge/event/entity/item/ItemExpireEvent;)V',false),new Insn(O.RETURN)]);
             if (name.endsWith('/ModEvents') && n === 'onPlayerInteract') itemGate(m,'interact','(Lnet/neoforged/neoforge/event/entity/player/PlayerInteractEvent$EntityInteract;)Z');

@@ -26,12 +26,12 @@ final class EnchantmentTools {
  static String clear(ServerPlayer p,String human){
   if(!CompanionBrain.settings.gifts)throw new IllegalStateException("Gifts disabled");
   if(!EnchantmentIntent.clearAll(human))throw new IllegalArgumentException("Ask to remove all enchantments from your held item");
-  ItemStack stack=p.getMainHandItem();if(stack.isEmpty())throw new IllegalArgumentException(Relations.tr(p,"Возьми нужный предмет в основную руку.","Hold the item in your main hand."));
+  ItemStack stack=p.getMainHandItem();if(stack.isEmpty())throw new IllegalArgumentException(ModTranslations.text(Relations.get(p).language,"verity_companion.enchantment_tools.hold_the_item_in_your_main_hand"));
   JsonObject before=inspect(stack);int count=before.getAsJsonArray("applied").size()+before.getAsJsonArray("stored").size();
   // Preserve durability, unbreakability, name and every unrelated component.
   clearRequestedComponents(stack,human);p.containerMenu.broadcastChanges();
-  return count==0?Relations.tr(p,"На предмете в руке нет обычных или книжных зачарований. Модификаторы других модов — отдельные свойства.","Your held item has no applied or stored enchantments. Other mod upgrades are separate properties."):
-   Relations.tr(p,"Сняты зачарования с предмета в руке: ","Removed enchantments from your held item: ")+count+Relations.tr(p,". Неразрушаемость и прочие свойства сохранены.",". Unbreakability and other properties were preserved.");
+  return count==0?ModTranslations.text(Relations.get(p).language,"verity_companion.enchantment_tools.your_held_item_has_no_applied_or"):
+   ModTranslations.text(Relations.get(p).language,"verity_companion.enchantment_tools.removed_enchantments_from_your_held_item")+count+ModTranslations.text(Relations.get(p).language,"verity_companion.enchantment_tools.unbreakability_and_other_properties_were_preserved");
  }
  static void clearRequestedComponents(ItemStack stack,String human){
   if(!EnchantmentIntent.clearAll(human))throw new IllegalArgumentException("Ask to remove all enchantments from your held item");

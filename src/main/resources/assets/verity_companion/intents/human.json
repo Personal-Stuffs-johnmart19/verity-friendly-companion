@@ -1,0 +1,2423 @@
+{
+  "en": {
+    "give": [
+      "give"
+    ],
+    "apply": [
+      "apply"
+    ],
+    "build": [
+      "build"
+    ],
+    "follow me": [
+      "follow me"
+    ],
+    "stop following": [
+      "stop following"
+    ],
+    "undo build": [
+      "undo"
+    ],
+    "yes": [
+      "yes"
+    ],
+    "negative": [
+      "never",
+      "do not",
+      "don't",
+      "not",
+      "no",
+      "without"
+    ],
+    "please": [
+      "please"
+    ],
+    "information": [
+      "explain",
+      "translate",
+      "recipe",
+      "said",
+      "quote",
+      "if"
+    ],
+    "me": [
+      "me"
+    ],
+    "effects": [
+      "effects"
+    ],
+    "speed": [
+      "speed"
+    ],
+    "strength": [
+      "strength"
+    ],
+    "night vision": [
+      "night vision"
+    ],
+    "forever": [
+      "forever"
+    ],
+    "enchant": [
+      "enchant"
+    ],
+    "remove": [
+      "remove"
+    ],
+    "all": [
+      "all"
+    ],
+    "make it prettier": [
+      "make it prettier"
+    ],
+    "from": [
+      "from"
+    ],
+    "here": [
+      "here"
+    ]
+  },
+  "ru": {
+    "give": [
+      "дай",
+      "дайте"
+    ],
+    "apply": [
+      "примени"
+    ],
+    "build": [
+      "построй"
+    ],
+    "follow me": [
+      "следуй за мной"
+    ],
+    "stop following": [
+      "перестань следовать"
+    ],
+    "undo build": [
+      "отмени постройку"
+    ],
+    "yes": [
+      "да"
+    ],
+    "negative": [
+      "не",
+      "нет",
+      "без"
+    ],
+    "please": [
+      "пожалуйста"
+    ],
+    "information": [
+      "расскажи",
+      "переведи",
+      "рецепт",
+      "сказал",
+      "если"
+    ],
+    "me": [
+      "мне"
+    ],
+    "effects": [
+      "эффекты"
+    ],
+    "speed": [
+      "скорость"
+    ],
+    "strength": [
+      "силу"
+    ],
+    "night vision": [
+      "ночное зрение"
+    ],
+    "forever": [
+      "навсегда"
+    ],
+    "enchant": [
+      "зачаруй"
+    ],
+    "remove": [
+      "убери"
+    ],
+    "all": [
+      "все"
+    ],
+    "make it prettier": [
+      "сделай красивее"
+    ],
+    "from": [
+      "из"
+    ],
+    "here": [
+      "здесь"
+    ]
+  },
+  "de": {
+    "give": [
+      "gib",
+      "gib mir"
+    ],
+    "apply": [
+      "wende an",
+      "verleihe"
+    ],
+    "build": [
+      "baue"
+    ],
+    "follow me": [
+      "folge mir"
+    ],
+    "stop following": [
+      "bleib stehen"
+    ],
+    "undo build": [
+      "mache rückgängig"
+    ],
+    "yes": [
+      "ja"
+    ],
+    "negative": [
+      "nicht",
+      "kein",
+      "keine",
+      "niemals"
+    ],
+    "please": [
+      "bitte"
+    ],
+    "information": [
+      "erkläre",
+      "übersetze",
+      "rezept",
+      "sagte",
+      "wenn"
+    ],
+    "me": [
+      "mir"
+    ],
+    "effects": [
+      "effekte"
+    ],
+    "speed": [
+      "geschwindigkeit"
+    ],
+    "strength": [
+      "stärke"
+    ],
+    "night vision": [
+      "nachtsicht"
+    ],
+    "forever": [
+      "für immer"
+    ],
+    "enchant": [
+      "verzaubere"
+    ],
+    "remove": [
+      "entferne"
+    ],
+    "all": [
+      "alle"
+    ],
+    "make it prettier": [
+      "mach es schöner"
+    ],
+    "from": [
+      "aus"
+    ],
+    "here": [
+      "hier"
+    ]
+  },
+  "fr": {
+    "give": [
+      "donne",
+      "donne-moi"
+    ],
+    "apply": [
+      "applique"
+    ],
+    "build": [
+      "construis"
+    ],
+    "follow me": [
+      "suis-moi"
+    ],
+    "stop following": [
+      "arrête de suivre"
+    ],
+    "undo build": [
+      "annule la construction"
+    ],
+    "yes": [
+      "oui"
+    ],
+    "negative": [
+      "ne",
+      "pas",
+      "jamais",
+      "sans"
+    ],
+    "please": [
+      "s’il te plaît",
+      "s'il te plaît"
+    ],
+    "information": [
+      "explique",
+      "traduis",
+      "recette",
+      "dit",
+      "si"
+    ],
+    "me": [
+      "moi"
+    ],
+    "effects": [
+      "effets"
+    ],
+    "speed": [
+      "vitesse"
+    ],
+    "strength": [
+      "force"
+    ],
+    "night vision": [
+      "vision nocturne"
+    ],
+    "forever": [
+      "pour toujours"
+    ],
+    "enchant": [
+      "enchante"
+    ],
+    "remove": [
+      "retire"
+    ],
+    "all": [
+      "tous"
+    ],
+    "make it prettier": [
+      "rends-la plus jolie"
+    ],
+    "from": [
+      "en"
+    ],
+    "here": [
+      "ici"
+    ]
+  },
+  "es": {
+    "give": [
+      "dame",
+      "da"
+    ],
+    "apply": [
+      "aplica"
+    ],
+    "build": [
+      "construye"
+    ],
+    "follow me": [
+      "sígueme"
+    ],
+    "stop following": [
+      "deja de seguirme"
+    ],
+    "undo build": [
+      "deshaz la construcción"
+    ],
+    "yes": [
+      "sí"
+    ],
+    "negative": [
+      "no",
+      "nunca",
+      "sin"
+    ],
+    "please": [
+      "por favor"
+    ],
+    "information": [
+      "explica",
+      "traduce",
+      "receta",
+      "dijo",
+      "si"
+    ],
+    "me": [
+      "me"
+    ],
+    "effects": [
+      "efectos"
+    ],
+    "speed": [
+      "velocidad"
+    ],
+    "strength": [
+      "fuerza"
+    ],
+    "night vision": [
+      "visión nocturna"
+    ],
+    "forever": [
+      "para siempre"
+    ],
+    "enchant": [
+      "encanta"
+    ],
+    "remove": [
+      "quita"
+    ],
+    "all": [
+      "todos"
+    ],
+    "make it prettier": [
+      "hazlo más bonito"
+    ],
+    "from": [
+      "de"
+    ],
+    "here": [
+      "aquí"
+    ]
+  },
+  "it": {
+    "give": [
+      "dammi",
+      "dai"
+    ],
+    "apply": [
+      "applica"
+    ],
+    "build": [
+      "costruisci"
+    ],
+    "follow me": [
+      "seguimi"
+    ],
+    "stop following": [
+      "smetti di seguirmi"
+    ],
+    "undo build": [
+      "annulla la costruzione"
+    ],
+    "yes": [
+      "sì"
+    ],
+    "negative": [
+      "non",
+      "mai",
+      "senza"
+    ],
+    "please": [
+      "per favore"
+    ],
+    "information": [
+      "spiega",
+      "traduci",
+      "ricetta",
+      "disse",
+      "se"
+    ],
+    "me": [
+      "mi"
+    ],
+    "effects": [
+      "effetti"
+    ],
+    "speed": [
+      "velocità"
+    ],
+    "strength": [
+      "forza"
+    ],
+    "night vision": [
+      "visione notturna"
+    ],
+    "forever": [
+      "per sempre"
+    ],
+    "enchant": [
+      "incanta"
+    ],
+    "remove": [
+      "rimuovi"
+    ],
+    "all": [
+      "tutti"
+    ],
+    "make it prettier": [
+      "rendila più bella"
+    ],
+    "from": [
+      "di"
+    ],
+    "here": [
+      "qui"
+    ]
+  },
+  "pt": {
+    "give": [
+      "me dê",
+      "dê",
+      "dá-me"
+    ],
+    "apply": [
+      "aplique"
+    ],
+    "build": [
+      "construa"
+    ],
+    "follow me": [
+      "siga-me"
+    ],
+    "stop following": [
+      "pare de me seguir"
+    ],
+    "undo build": [
+      "desfaça a construção"
+    ],
+    "yes": [
+      "sim"
+    ],
+    "negative": [
+      "não",
+      "nunca",
+      "sem"
+    ],
+    "please": [
+      "por favor"
+    ],
+    "information": [
+      "explique",
+      "traduza",
+      "receita",
+      "disse",
+      "se"
+    ],
+    "me": [
+      "me"
+    ],
+    "effects": [
+      "efeitos"
+    ],
+    "speed": [
+      "velocidade"
+    ],
+    "strength": [
+      "força"
+    ],
+    "night vision": [
+      "visão noturna"
+    ],
+    "forever": [
+      "para sempre"
+    ],
+    "enchant": [
+      "encante"
+    ],
+    "remove": [
+      "remova"
+    ],
+    "all": [
+      "todos"
+    ],
+    "make it prettier": [
+      "deixe mais bonito"
+    ],
+    "from": [
+      "de"
+    ],
+    "here": [
+      "aqui"
+    ]
+  },
+  "nl": {
+    "give": [
+      "geef",
+      "geef mij"
+    ],
+    "apply": [
+      "pas toe"
+    ],
+    "build": [
+      "bouw"
+    ],
+    "follow me": [
+      "volg mij",
+      "volg me"
+    ],
+    "stop following": [
+      "stop met volgen"
+    ],
+    "undo build": [
+      "maak de bouw ongedaan"
+    ],
+    "yes": [
+      "ja"
+    ],
+    "negative": [
+      "niet",
+      "geen",
+      "nooit",
+      "zonder"
+    ],
+    "please": [
+      "alsjeblieft"
+    ],
+    "information": [
+      "leg uit",
+      "vertaal",
+      "recept",
+      "zei",
+      "als"
+    ],
+    "me": [
+      "mij"
+    ],
+    "effects": [
+      "effecten"
+    ],
+    "speed": [
+      "snelheid"
+    ],
+    "strength": [
+      "kracht"
+    ],
+    "night vision": [
+      "nachtzicht"
+    ],
+    "forever": [
+      "voor altijd"
+    ],
+    "enchant": [
+      "betover"
+    ],
+    "remove": [
+      "verwijder"
+    ],
+    "all": [
+      "alle"
+    ],
+    "make it prettier": [
+      "maak het mooier"
+    ],
+    "from": [
+      "van"
+    ],
+    "here": [
+      "hier"
+    ]
+  },
+  "pl": {
+    "give": [
+      "daj",
+      "daj mi"
+    ],
+    "apply": [
+      "nałóż"
+    ],
+    "build": [
+      "zbuduj"
+    ],
+    "follow me": [
+      "chodź za mną"
+    ],
+    "stop following": [
+      "przestań mnie śledzić"
+    ],
+    "undo build": [
+      "cofnij budowę"
+    ],
+    "yes": [
+      "tak"
+    ],
+    "negative": [
+      "nie",
+      "nigdy",
+      "bez"
+    ],
+    "please": [
+      "proszę"
+    ],
+    "information": [
+      "wyjaśnij",
+      "przetłumacz",
+      "przepis",
+      "powiedział",
+      "jeśli"
+    ],
+    "me": [
+      "mi"
+    ],
+    "effects": [
+      "efekty"
+    ],
+    "speed": [
+      "szybkość"
+    ],
+    "strength": [
+      "siłę"
+    ],
+    "night vision": [
+      "noktowizja"
+    ],
+    "forever": [
+      "na zawsze"
+    ],
+    "enchant": [
+      "zaklnij"
+    ],
+    "remove": [
+      "usuń"
+    ],
+    "all": [
+      "wszystkie"
+    ],
+    "make it prettier": [
+      "zrób to ładniejsze"
+    ],
+    "from": [
+      "z"
+    ],
+    "here": [
+      "tutaj"
+    ]
+  },
+  "cs": {
+    "give": [
+      "dej",
+      "dej mi"
+    ],
+    "apply": [
+      "aplikuj"
+    ],
+    "build": [
+      "postav"
+    ],
+    "follow me": [
+      "následuj mě"
+    ],
+    "stop following": [
+      "přestaň mě sledovat"
+    ],
+    "undo build": [
+      "vrať stavbu zpět"
+    ],
+    "yes": [
+      "ano"
+    ],
+    "negative": [
+      "ne",
+      "nikdy",
+      "bez"
+    ],
+    "please": [
+      "prosím"
+    ],
+    "information": [
+      "vysvětli",
+      "přelož",
+      "recept",
+      "řekl",
+      "pokud"
+    ],
+    "me": [
+      "mi"
+    ],
+    "effects": [
+      "efekty"
+    ],
+    "speed": [
+      "rychlost"
+    ],
+    "strength": [
+      "sílu"
+    ],
+    "night vision": [
+      "noční vidění"
+    ],
+    "forever": [
+      "navždy"
+    ],
+    "enchant": [
+      "očaruj"
+    ],
+    "remove": [
+      "odstraň"
+    ],
+    "all": [
+      "všechny"
+    ],
+    "make it prettier": [
+      "udělej to hezčí"
+    ],
+    "from": [
+      "z"
+    ],
+    "here": [
+      "tady"
+    ]
+  },
+  "sk": {
+    "give": [
+      "daj",
+      "daj mi"
+    ],
+    "apply": [
+      "aplikuj"
+    ],
+    "build": [
+      "postav"
+    ],
+    "follow me": [
+      "nasleduj ma"
+    ],
+    "stop following": [
+      "prestaň ma sledovať"
+    ],
+    "undo build": [
+      "vráť stavbu späť"
+    ],
+    "yes": [
+      "áno"
+    ],
+    "negative": [
+      "nie",
+      "nikdy",
+      "bez"
+    ],
+    "please": [
+      "prosím"
+    ],
+    "information": [
+      "vysvetli",
+      "prelož",
+      "recept",
+      "povedal",
+      "ak"
+    ],
+    "me": [
+      "mi"
+    ],
+    "effects": [
+      "efekty"
+    ],
+    "speed": [
+      "rýchlosť"
+    ],
+    "strength": [
+      "silu"
+    ],
+    "night vision": [
+      "nočné videnie"
+    ],
+    "forever": [
+      "navždy"
+    ],
+    "enchant": [
+      "očaruj"
+    ],
+    "remove": [
+      "odstráň"
+    ],
+    "all": [
+      "všetky"
+    ],
+    "make it prettier": [
+      "urob to krajšie"
+    ],
+    "from": [
+      "z"
+    ],
+    "here": [
+      "tu"
+    ]
+  },
+  "ro": {
+    "give": [
+      "dă-mi",
+      "dă"
+    ],
+    "apply": [
+      "aplică"
+    ],
+    "build": [
+      "construiește"
+    ],
+    "follow me": [
+      "urmează-mă"
+    ],
+    "stop following": [
+      "oprește urmărirea"
+    ],
+    "undo build": [
+      "anulează construcția"
+    ],
+    "yes": [
+      "da"
+    ],
+    "negative": [
+      "nu",
+      "niciodată",
+      "fără"
+    ],
+    "please": [
+      "te rog"
+    ],
+    "information": [
+      "explică",
+      "tradu",
+      "rețetă",
+      "a spus",
+      "dacă"
+    ],
+    "me": [
+      "mie"
+    ],
+    "effects": [
+      "efecte"
+    ],
+    "speed": [
+      "viteză"
+    ],
+    "strength": [
+      "putere"
+    ],
+    "night vision": [
+      "vedere nocturnă"
+    ],
+    "forever": [
+      "pentru totdeauna"
+    ],
+    "enchant": [
+      "vrăjește"
+    ],
+    "remove": [
+      "elimină"
+    ],
+    "all": [
+      "toate"
+    ],
+    "make it prettier": [
+      "fă-o mai frumoasă"
+    ],
+    "from": [
+      "din"
+    ],
+    "here": [
+      "aici"
+    ]
+  },
+  "hu": {
+    "give": [
+      "adj",
+      "adj nekem"
+    ],
+    "apply": [
+      "alkalmazz"
+    ],
+    "build": [
+      "építs"
+    ],
+    "follow me": [
+      "kövess"
+    ],
+    "stop following": [
+      "ne kövess tovább"
+    ],
+    "undo build": [
+      "vond vissza az építést"
+    ],
+    "yes": [
+      "igen"
+    ],
+    "negative": [
+      "ne",
+      "nem",
+      "soha",
+      "nélkül"
+    ],
+    "please": [
+      "kérlek"
+    ],
+    "information": [
+      "magyarázd",
+      "fordítsd",
+      "recept",
+      "mondta",
+      "ha"
+    ],
+    "me": [
+      "nekem"
+    ],
+    "effects": [
+      "effektek"
+    ],
+    "speed": [
+      "gyorsaság"
+    ],
+    "strength": [
+      "erő"
+    ],
+    "night vision": [
+      "éjjellátás"
+    ],
+    "forever": [
+      "örökre"
+    ],
+    "enchant": [
+      "bűvöld el"
+    ],
+    "remove": [
+      "távolítsd el"
+    ],
+    "all": [
+      "minden"
+    ],
+    "make it prettier": [
+      "tedd szebbé"
+    ],
+    "from": [
+      "ebből"
+    ],
+    "here": [
+      "itt"
+    ]
+  },
+  "da": {
+    "give": [
+      "giv",
+      "giv mig"
+    ],
+    "apply": [
+      "anvend"
+    ],
+    "build": [
+      "byg"
+    ],
+    "follow me": [
+      "følg mig"
+    ],
+    "stop following": [
+      "stop med at følge"
+    ],
+    "undo build": [
+      "fortryd byggeriet"
+    ],
+    "yes": [
+      "ja"
+    ],
+    "negative": [
+      "ikke",
+      "aldrig",
+      "uden"
+    ],
+    "please": [
+      "venligst"
+    ],
+    "information": [
+      "forklar",
+      "oversæt",
+      "opskrift",
+      "sagde",
+      "hvis"
+    ],
+    "me": [
+      "mig"
+    ],
+    "effects": [
+      "effekter"
+    ],
+    "speed": [
+      "hastighed"
+    ],
+    "strength": [
+      "styrke"
+    ],
+    "night vision": [
+      "nattesyn"
+    ],
+    "forever": [
+      "for evigt"
+    ],
+    "enchant": [
+      "fortryl"
+    ],
+    "remove": [
+      "fjern"
+    ],
+    "all": [
+      "alle"
+    ],
+    "make it prettier": [
+      "gør det pænere"
+    ],
+    "from": [
+      "af"
+    ],
+    "here": [
+      "her"
+    ]
+  },
+  "fi": {
+    "give": [
+      "anna",
+      "anna minulle"
+    ],
+    "apply": [
+      "lisää"
+    ],
+    "build": [
+      "rakenna"
+    ],
+    "follow me": [
+      "seuraa minua"
+    ],
+    "stop following": [
+      "lopeta seuraaminen"
+    ],
+    "undo build": [
+      "kumoa rakennus"
+    ],
+    "yes": [
+      "kyllä"
+    ],
+    "negative": [
+      "älä",
+      "ei",
+      "koskaan",
+      "ilman"
+    ],
+    "please": [
+      "kiitos"
+    ],
+    "information": [
+      "selitä",
+      "käännä",
+      "resepti",
+      "sanoi",
+      "jos"
+    ],
+    "me": [
+      "minulle"
+    ],
+    "effects": [
+      "tehosteet"
+    ],
+    "speed": [
+      "nopeus"
+    ],
+    "strength": [
+      "voima"
+    ],
+    "night vision": [
+      "pimeänäkö"
+    ],
+    "forever": [
+      "ikuisesti"
+    ],
+    "enchant": [
+      "lumoa"
+    ],
+    "remove": [
+      "poista"
+    ],
+    "all": [
+      "kaikki"
+    ],
+    "make it prettier": [
+      "tee siitä kauniimpi"
+    ],
+    "from": [
+      "materiaalista"
+    ],
+    "here": [
+      "tähän"
+    ]
+  },
+  "sv": {
+    "give": [
+      "ge",
+      "ge mig"
+    ],
+    "apply": [
+      "applicera"
+    ],
+    "build": [
+      "bygg"
+    ],
+    "follow me": [
+      "följ mig"
+    ],
+    "stop following": [
+      "sluta följa mig"
+    ],
+    "undo build": [
+      "ångra bygget"
+    ],
+    "yes": [
+      "ja"
+    ],
+    "negative": [
+      "inte",
+      "aldrig",
+      "utan"
+    ],
+    "please": [
+      "snälla"
+    ],
+    "information": [
+      "förklara",
+      "översätt",
+      "recept",
+      "sade",
+      "om"
+    ],
+    "me": [
+      "mig"
+    ],
+    "effects": [
+      "effekter"
+    ],
+    "speed": [
+      "snabbhet"
+    ],
+    "strength": [
+      "styrka"
+    ],
+    "night vision": [
+      "mörkerseende"
+    ],
+    "forever": [
+      "för alltid"
+    ],
+    "enchant": [
+      "förtrolla"
+    ],
+    "remove": [
+      "ta bort"
+    ],
+    "all": [
+      "alla"
+    ],
+    "make it prettier": [
+      "gör det finare"
+    ],
+    "from": [
+      "av"
+    ],
+    "here": [
+      "här"
+    ]
+  },
+  "nb": {
+    "give": [
+      "gi",
+      "gi meg"
+    ],
+    "apply": [
+      "påfør"
+    ],
+    "build": [
+      "bygg"
+    ],
+    "follow me": [
+      "følg meg"
+    ],
+    "stop following": [
+      "slutt å følge meg"
+    ],
+    "undo build": [
+      "angre byggingen"
+    ],
+    "yes": [
+      "ja"
+    ],
+    "negative": [
+      "ikke",
+      "aldri",
+      "uten"
+    ],
+    "please": [
+      "vær så snill"
+    ],
+    "information": [
+      "forklar",
+      "oversett",
+      "oppskrift",
+      "sa",
+      "hvis"
+    ],
+    "me": [
+      "meg"
+    ],
+    "effects": [
+      "effekter"
+    ],
+    "speed": [
+      "hurtighet"
+    ],
+    "strength": [
+      "styrke"
+    ],
+    "night vision": [
+      "nattsyn"
+    ],
+    "forever": [
+      "for alltid"
+    ],
+    "enchant": [
+      "fortryll"
+    ],
+    "remove": [
+      "fjern"
+    ],
+    "all": [
+      "alle"
+    ],
+    "make it prettier": [
+      "gjør det penere"
+    ],
+    "from": [
+      "av"
+    ],
+    "here": [
+      "her"
+    ]
+  },
+  "el": {
+    "give": [
+      "δώσε",
+      "δώσε μου"
+    ],
+    "apply": [
+      "εφάρμοσε"
+    ],
+    "build": [
+      "χτίσε"
+    ],
+    "follow me": [
+      "ακολούθησέ με"
+    ],
+    "stop following": [
+      "σταμάτα να με ακολουθείς"
+    ],
+    "undo build": [
+      "αναίρεσε την κατασκευή"
+    ],
+    "yes": [
+      "ναι"
+    ],
+    "negative": [
+      "μη",
+      "μην",
+      "δεν",
+      "ποτέ",
+      "χωρίς"
+    ],
+    "please": [
+      "παρακαλώ"
+    ],
+    "information": [
+      "εξήγησε",
+      "μετάφρασε",
+      "συνταγή",
+      "είπε",
+      "αν"
+    ],
+    "me": [
+      "μου"
+    ],
+    "effects": [
+      "εφέ"
+    ],
+    "speed": [
+      "ταχύτητα"
+    ],
+    "strength": [
+      "δύναμη"
+    ],
+    "night vision": [
+      "νυχτερινή όραση"
+    ],
+    "forever": [
+      "για πάντα"
+    ],
+    "enchant": [
+      "μάγεψε"
+    ],
+    "remove": [
+      "αφαίρεσε"
+    ],
+    "all": [
+      "όλα"
+    ],
+    "make it prettier": [
+      "κάνε το πιο όμορφο"
+    ],
+    "from": [
+      "από"
+    ],
+    "here": [
+      "εδώ"
+    ]
+  },
+  "tr": {
+    "give": [
+      "ver",
+      "bana ver"
+    ],
+    "apply": [
+      "uygula"
+    ],
+    "build": [
+      "inşa et"
+    ],
+    "follow me": [
+      "beni takip et"
+    ],
+    "stop following": [
+      "takibi bırak"
+    ],
+    "undo build": [
+      "inşaatı geri al"
+    ],
+    "yes": [
+      "evet"
+    ],
+    "negative": [
+      "hayır",
+      "asla",
+      "verme",
+      "uygulama",
+      "yapma"
+    ],
+    "please": [
+      "lütfen"
+    ],
+    "information": [
+      "açıkla",
+      "çevir",
+      "tarif",
+      "dedi",
+      "eğer"
+    ],
+    "me": [
+      "bana"
+    ],
+    "effects": [
+      "efektler"
+    ],
+    "speed": [
+      "hız"
+    ],
+    "strength": [
+      "güç"
+    ],
+    "night vision": [
+      "gece görüşü"
+    ],
+    "forever": [
+      "sonsuza kadar"
+    ],
+    "enchant": [
+      "büyüle"
+    ],
+    "remove": [
+      "kaldır"
+    ],
+    "all": [
+      "tüm"
+    ],
+    "make it prettier": [
+      "daha güzel yap"
+    ],
+    "from": [
+      "malzeme"
+    ],
+    "here": [
+      "burada"
+    ]
+  },
+  "ar": {
+    "give": [
+      "أعطني",
+      "اعطني"
+    ],
+    "apply": [
+      "طبق",
+      "طبّق"
+    ],
+    "build": [
+      "ابن",
+      "ابني"
+    ],
+    "follow me": [
+      "اتبعني"
+    ],
+    "stop following": [
+      "توقف عن اتباعي"
+    ],
+    "undo build": [
+      "تراجع عن البناء"
+    ],
+    "yes": [
+      "نعم"
+    ],
+    "negative": [
+      "لا",
+      "ليس",
+      "بدون",
+      "أبدا"
+    ],
+    "please": [
+      "من فضلك"
+    ],
+    "information": [
+      "اشرح",
+      "ترجم",
+      "وصفة",
+      "قال",
+      "إذا"
+    ],
+    "me": [
+      "لي"
+    ],
+    "effects": [
+      "تأثيرات"
+    ],
+    "speed": [
+      "سرعة"
+    ],
+    "strength": [
+      "قوة"
+    ],
+    "night vision": [
+      "رؤية ليلية"
+    ],
+    "forever": [
+      "إلى الأبد"
+    ],
+    "enchant": [
+      "اسحر"
+    ],
+    "remove": [
+      "أزل"
+    ],
+    "all": [
+      "كل"
+    ],
+    "make it prettier": [
+      "اجعله أجمل"
+    ],
+    "from": [
+      "من"
+    ],
+    "here": [
+      "هنا"
+    ]
+  },
+  "he": {
+    "give": [
+      "תן לי",
+      "תן"
+    ],
+    "apply": [
+      "החל"
+    ],
+    "build": [
+      "בנה"
+    ],
+    "follow me": [
+      "עקוב אחרי"
+    ],
+    "stop following": [
+      "הפסק לעקוב"
+    ],
+    "undo build": [
+      "בטל את הבנייה"
+    ],
+    "yes": [
+      "כן"
+    ],
+    "negative": [
+      "לא",
+      "אל",
+      "בלי",
+      "לעולם"
+    ],
+    "please": [
+      "בבקשה"
+    ],
+    "information": [
+      "הסבר",
+      "תרגם",
+      "מתכון",
+      "אמר",
+      "אם"
+    ],
+    "me": [
+      "לי"
+    ],
+    "effects": [
+      "אפקטים"
+    ],
+    "speed": [
+      "מהירות"
+    ],
+    "strength": [
+      "כוח"
+    ],
+    "night vision": [
+      "ראיית לילה"
+    ],
+    "forever": [
+      "לנצח"
+    ],
+    "enchant": [
+      "כשף"
+    ],
+    "remove": [
+      "הסר"
+    ],
+    "all": [
+      "כל"
+    ],
+    "make it prettier": [
+      "עשה את זה יפה יותר"
+    ],
+    "from": [
+      "מחומר"
+    ],
+    "here": [
+      "כאן"
+    ]
+  },
+  "hi": {
+    "give": [
+      "दो",
+      "मुझे दो"
+    ],
+    "apply": [
+      "लगाओ",
+      "लगाओ"
+    ],
+    "build": [
+      "बनाओ"
+    ],
+    "follow me": [
+      "मेरे पीछे आओ"
+    ],
+    "stop following": [
+      "पीछा करना बंद करो"
+    ],
+    "undo build": [
+      "निर्माण वापस लो"
+    ],
+    "yes": [
+      "हाँ"
+    ],
+    "negative": [
+      "नहीं",
+      "मत",
+      "बिना"
+    ],
+    "please": [
+      "कृपया"
+    ],
+    "information": [
+      "समझाओ",
+      "अनुवाद",
+      "नुस्खा",
+      "कहा",
+      "अगर"
+    ],
+    "me": [
+      "मुझे"
+    ],
+    "effects": [
+      "प्रभाव"
+    ],
+    "speed": [
+      "गति"
+    ],
+    "strength": [
+      "शक्ति"
+    ],
+    "night vision": [
+      "रात्रि दृष्टि"
+    ],
+    "forever": [
+      "हमेशा के लिए"
+    ],
+    "enchant": [
+      "मंत्रमुग्ध करो"
+    ],
+    "remove": [
+      "हटाओ"
+    ],
+    "all": [
+      "सभी"
+    ],
+    "make it prettier": [
+      "इसे सुंदर बनाओ"
+    ],
+    "from": [
+      "सामग्री"
+    ],
+    "here": [
+      "यहाँ"
+    ]
+  },
+  "id": {
+    "give": [
+      "beri",
+      "berikan"
+    ],
+    "apply": [
+      "terapkan"
+    ],
+    "build": [
+      "bangun"
+    ],
+    "follow me": [
+      "ikuti aku"
+    ],
+    "stop following": [
+      "berhenti mengikutiku"
+    ],
+    "undo build": [
+      "batalkan bangunan"
+    ],
+    "yes": [
+      "ya"
+    ],
+    "negative": [
+      "jangan",
+      "tidak",
+      "tanpa"
+    ],
+    "please": [
+      "tolong"
+    ],
+    "information": [
+      "jelaskan",
+      "terjemahkan",
+      "resep",
+      "berkata",
+      "jika"
+    ],
+    "me": [
+      "aku"
+    ],
+    "effects": [
+      "efek"
+    ],
+    "speed": [
+      "kecepatan"
+    ],
+    "strength": [
+      "kekuatan"
+    ],
+    "night vision": [
+      "penglihatan malam"
+    ],
+    "forever": [
+      "selamanya"
+    ],
+    "enchant": [
+      "sihir"
+    ],
+    "remove": [
+      "hapus"
+    ],
+    "all": [
+      "semua"
+    ],
+    "make it prettier": [
+      "buat lebih indah"
+    ],
+    "from": [
+      "dari"
+    ],
+    "here": [
+      "di sini"
+    ]
+  },
+  "ms": {
+    "give": [
+      "beri",
+      "berikan"
+    ],
+    "apply": [
+      "gunakan"
+    ],
+    "build": [
+      "bina"
+    ],
+    "follow me": [
+      "ikut saya"
+    ],
+    "stop following": [
+      "berhenti mengikuti saya"
+    ],
+    "undo build": [
+      "batalkan binaan"
+    ],
+    "yes": [
+      "ya"
+    ],
+    "negative": [
+      "jangan",
+      "tidak",
+      "tanpa"
+    ],
+    "please": [
+      "tolong"
+    ],
+    "information": [
+      "jelaskan",
+      "terjemahkan",
+      "resipi",
+      "berkata",
+      "jika"
+    ],
+    "me": [
+      "saya"
+    ],
+    "effects": [
+      "kesan"
+    ],
+    "speed": [
+      "kelajuan"
+    ],
+    "strength": [
+      "kekuatan"
+    ],
+    "night vision": [
+      "penglihatan malam"
+    ],
+    "forever": [
+      "selamanya"
+    ],
+    "enchant": [
+      "sihir"
+    ],
+    "remove": [
+      "buang"
+    ],
+    "all": [
+      "semua"
+    ],
+    "make it prettier": [
+      "jadikan lebih cantik"
+    ],
+    "from": [
+      "daripada"
+    ],
+    "here": [
+      "di sini"
+    ]
+  },
+  "vi": {
+    "give": [
+      "cho tôi",
+      "đưa tôi"
+    ],
+    "apply": [
+      "áp dụng"
+    ],
+    "build": [
+      "xây"
+    ],
+    "follow me": [
+      "đi theo tôi"
+    ],
+    "stop following": [
+      "ngừng đi theo tôi"
+    ],
+    "undo build": [
+      "hoàn tác công trình"
+    ],
+    "yes": [
+      "vâng"
+    ],
+    "negative": [
+      "không",
+      "đừng",
+      "chưa"
+    ],
+    "please": [
+      "làm ơn"
+    ],
+    "information": [
+      "giải thích",
+      "dịch",
+      "công thức",
+      "nói",
+      "nếu"
+    ],
+    "me": [
+      "tôi"
+    ],
+    "effects": [
+      "hiệu ứng"
+    ],
+    "speed": [
+      "tốc độ"
+    ],
+    "strength": [
+      "sức mạnh"
+    ],
+    "night vision": [
+      "nhìn trong đêm"
+    ],
+    "forever": [
+      "mãi mãi"
+    ],
+    "enchant": [
+      "phù phép"
+    ],
+    "remove": [
+      "xóa"
+    ],
+    "all": [
+      "tất cả"
+    ],
+    "make it prettier": [
+      "làm nó đẹp hơn"
+    ],
+    "from": [
+      "bằng"
+    ],
+    "here": [
+      "ở đây"
+    ]
+  },
+  "zh": {
+    "give": [
+      "给我"
+    ],
+    "apply": [
+      "施加"
+    ],
+    "build": [
+      "建造"
+    ],
+    "follow me": [
+      "跟着我"
+    ],
+    "stop following": [
+      "停止跟随"
+    ],
+    "undo build": [
+      "撤销建造"
+    ],
+    "yes": [
+      "是的"
+    ],
+    "negative": [
+      "不要",
+      "不",
+      "别",
+      "没有"
+    ],
+    "please": [
+      "请"
+    ],
+    "information": [
+      "解释",
+      "翻译",
+      "配方",
+      "他说",
+      "如果"
+    ],
+    "me": [
+      "我"
+    ],
+    "effects": [
+      "效果"
+    ],
+    "speed": [
+      "速度"
+    ],
+    "strength": [
+      "力量"
+    ],
+    "night vision": [
+      "夜视"
+    ],
+    "forever": [
+      "永久"
+    ],
+    "enchant": [
+      "附魔"
+    ],
+    "remove": [
+      "移除"
+    ],
+    "all": [
+      "所有"
+    ],
+    "make it prettier": [
+      "让它更漂亮"
+    ],
+    "from": [
+      "用"
+    ],
+    "here": [
+      "这里"
+    ]
+  },
+  "zh_tw": {
+    "give": [
+      "給我"
+    ],
+    "apply": [
+      "施加"
+    ],
+    "build": [
+      "建造"
+    ],
+    "follow me": [
+      "跟著我"
+    ],
+    "stop following": [
+      "停止跟隨"
+    ],
+    "undo build": [
+      "撤銷建造"
+    ],
+    "yes": [
+      "是的"
+    ],
+    "negative": [
+      "不要",
+      "不",
+      "別",
+      "沒有"
+    ],
+    "please": [
+      "請"
+    ],
+    "information": [
+      "解釋",
+      "翻譯",
+      "配方",
+      "他說",
+      "如果"
+    ],
+    "me": [
+      "我"
+    ],
+    "effects": [
+      "效果"
+    ],
+    "speed": [
+      "速度"
+    ],
+    "strength": [
+      "力量"
+    ],
+    "night vision": [
+      "夜視"
+    ],
+    "forever": [
+      "永久"
+    ],
+    "enchant": [
+      "附魔"
+    ],
+    "remove": [
+      "移除"
+    ],
+    "all": [
+      "所有"
+    ],
+    "make it prettier": [
+      "讓它更漂亮"
+    ],
+    "from": [
+      "用"
+    ],
+    "here": [
+      "這裡"
+    ]
+  },
+  "ja": {
+    "give": [
+      "ください"
+    ],
+    "apply": [
+      "付与して"
+    ],
+    "build": [
+      "建てて"
+    ],
+    "follow me": [
+      "ついてきて"
+    ],
+    "stop following": [
+      "追従をやめて"
+    ],
+    "undo build": [
+      "建築を取り消して"
+    ],
+    "yes": [
+      "はい"
+    ],
+    "negative": [
+      "しないで",
+      "いらない",
+      "ない",
+      "もし"
+    ],
+    "please": [
+      "お願い"
+    ],
+    "information": [
+      "説明",
+      "翻訳",
+      "レシピ",
+      "と言った"
+    ],
+    "me": [
+      "私に"
+    ],
+    "effects": [
+      "効果"
+    ],
+    "speed": [
+      "速度"
+    ],
+    "strength": [
+      "力"
+    ],
+    "night vision": [
+      "暗視"
+    ],
+    "forever": [
+      "永久に"
+    ],
+    "enchant": [
+      "エンチャントして"
+    ],
+    "remove": [
+      "除去して"
+    ],
+    "all": [
+      "すべて"
+    ],
+    "make it prettier": [
+      "もっときれいにして"
+    ],
+    "from": [
+      "材料"
+    ],
+    "here": [
+      "ここ"
+    ]
+  },
+  "ko": {
+    "give": [
+      "줘",
+      "주세요"
+    ],
+    "apply": [
+      "적용해"
+    ],
+    "build": [
+      "지어"
+    ],
+    "follow me": [
+      "따라와"
+    ],
+    "stop following": [
+      "따라오지 마"
+    ],
+    "undo build": [
+      "건축 취소"
+    ],
+    "yes": [
+      "네"
+    ],
+    "negative": [
+      "하지 마",
+      "안",
+      "않",
+      "없이",
+      "만약"
+    ],
+    "please": [
+      "제발"
+    ],
+    "information": [
+      "설명",
+      "번역",
+      "제작법",
+      "말했다"
+    ],
+    "me": [
+      "나에게"
+    ],
+    "effects": [
+      "효과"
+    ],
+    "speed": [
+      "속도"
+    ],
+    "strength": [
+      "힘"
+    ],
+    "night vision": [
+      "야간 투시"
+    ],
+    "forever": [
+      "영구적으로"
+    ],
+    "enchant": [
+      "인챈트해"
+    ],
+    "remove": [
+      "제거해"
+    ],
+    "all": [
+      "모든"
+    ],
+    "make it prettier": [
+      "더 예쁘게 해"
+    ],
+    "from": [
+      "재료"
+    ],
+    "here": [
+      "여기"
+    ]
+  },
+  "bg": {
+    "give": [
+      "дай",
+      "дай ми"
+    ],
+    "apply": [
+      "приложи"
+    ],
+    "build": [
+      "построй"
+    ],
+    "follow me": [
+      "следвай ме"
+    ],
+    "stop following": [
+      "спри да ме следваш"
+    ],
+    "undo build": [
+      "отмени строежа"
+    ],
+    "yes": [
+      "да"
+    ],
+    "negative": [
+      "не",
+      "никога",
+      "без"
+    ],
+    "please": [
+      "моля"
+    ],
+    "information": [
+      "обясни",
+      "преведи",
+      "рецепта",
+      "каза",
+      "ако"
+    ],
+    "me": [
+      "ми"
+    ],
+    "effects": [
+      "ефекти"
+    ],
+    "speed": [
+      "скорост"
+    ],
+    "strength": [
+      "сила"
+    ],
+    "night vision": [
+      "нощно виждане"
+    ],
+    "forever": [
+      "завинаги"
+    ],
+    "enchant": [
+      "омагьосай"
+    ],
+    "remove": [
+      "премахни"
+    ],
+    "all": [
+      "всички"
+    ],
+    "make it prettier": [
+      "направи го по-красиво"
+    ],
+    "from": [
+      "от"
+    ],
+    "here": [
+      "тук"
+    ]
+  },
+  "hr": {
+    "give": [
+      "daj",
+      "daj mi"
+    ],
+    "apply": [
+      "primijeni"
+    ],
+    "build": [
+      "izgradi"
+    ],
+    "follow me": [
+      "slijedi me"
+    ],
+    "stop following": [
+      "prestani me slijediti"
+    ],
+    "undo build": [
+      "poništi gradnju"
+    ],
+    "yes": [
+      "da"
+    ],
+    "negative": [
+      "ne",
+      "nikad",
+      "bez"
+    ],
+    "please": [
+      "molim"
+    ],
+    "information": [
+      "objasni",
+      "prevedi",
+      "recept",
+      "rekao",
+      "ako"
+    ],
+    "me": [
+      "mi"
+    ],
+    "effects": [
+      "efekti"
+    ],
+    "speed": [
+      "brzina"
+    ],
+    "strength": [
+      "snaga"
+    ],
+    "night vision": [
+      "noćni vid"
+    ],
+    "forever": [
+      "zauvijek"
+    ],
+    "enchant": [
+      "začaraj"
+    ],
+    "remove": [
+      "ukloni"
+    ],
+    "all": [
+      "sve"
+    ],
+    "make it prettier": [
+      "učini to ljepšim"
+    ],
+    "from": [
+      "od"
+    ],
+    "here": [
+      "ovdje"
+    ]
+  },
+  "sr": {
+    "give": [
+      "дај",
+      "дај ми"
+    ],
+    "apply": [
+      "примени"
+    ],
+    "build": [
+      "изгради"
+    ],
+    "follow me": [
+      "прати ме"
+    ],
+    "stop following": [
+      "престани да ме пратиш"
+    ],
+    "undo build": [
+      "поништи градњу"
+    ],
+    "yes": [
+      "да"
+    ],
+    "negative": [
+      "не",
+      "никад",
+      "без"
+    ],
+    "please": [
+      "молим"
+    ],
+    "information": [
+      "објасни",
+      "преведи",
+      "рецепт",
+      "рекао",
+      "ако"
+    ],
+    "me": [
+      "ми"
+    ],
+    "effects": [
+      "ефекти"
+    ],
+    "speed": [
+      "брзина"
+    ],
+    "strength": [
+      "снага"
+    ],
+    "night vision": [
+      "ноћни вид"
+    ],
+    "forever": [
+      "заувек"
+    ],
+    "enchant": [
+      "зачарај"
+    ],
+    "remove": [
+      "уклони"
+    ],
+    "all": [
+      "све"
+    ],
+    "make it prettier": [
+      "учини то лепшим"
+    ],
+    "from": [
+      "од"
+    ],
+    "here": [
+      "овде"
+    ]
+  }
+}

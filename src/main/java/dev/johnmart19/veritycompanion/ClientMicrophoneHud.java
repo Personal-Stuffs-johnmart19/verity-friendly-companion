@@ -65,13 +65,12 @@ public final class ClientMicrophoneHud {
   if(state==State.SENDING&&now-changed>10_000_000_000L)failed();
   if(state==State.STARTING&&now-started>3_000_000_000L)failed();
   if(state==State.HIDDEN||mc.options.hideGui)return;
-  boolean ru=mc.options.languageCode.startsWith("ru");
   String title=switch(state){
-   case STARTING->ru?"Микрофон: подключение…":"Microphone: starting…";
-   case RECORDING->(ru?"Запись ":"Recording ")+String.format(java.util.Locale.ROOT,"%.1f / 29 s",(now-started)/1_000_000_000.0);
-   case SENDING->ru?"Голос: отправка…":"Voice: sending…";
-   case SENT->automaticStop?(ru?"Лимит записи · отправлено":"Recording limit · sent"):(ru?"Голос отправлен":"Voice sent");
-   case ERROR->ru?"Микрофон: запись не отправлена":"Microphone: recording not sent";
+   case STARTING->ModTranslations.component("verity_companion.microphone.microphone_starting").getString();
+   case RECORDING->ModTranslations.component("verity_companion.microphone.recording_time",String.format(java.util.Locale.ROOT,"%.1f",(now-started)/1_000_000_000.0)).getString();
+   case SENDING->ModTranslations.component("verity_companion.microphone.voice_sending").getString();
+   case SENT->automaticStop?(ModTranslations.component("verity_companion.microphone.recording_limit_sent").getString()):(ModTranslations.component("verity_companion.microphone.voice_sent").getString());
+   case ERROR->ModTranslations.component("verity_companion.microphone.microphone_recording_not_sent").getString();
    default->"";
   };
   GuiGraphics g=event.getGuiGraphics();int width=Math.max(190,mc.font.width(title)+40),x=(g.guiWidth()-width)/2,y=g.guiHeight()-76;

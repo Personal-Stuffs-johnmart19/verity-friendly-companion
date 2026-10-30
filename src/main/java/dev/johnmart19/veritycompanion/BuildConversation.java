@@ -7,30 +7,24 @@ public final class BuildConversation {
  private static final Map<UUID,Turn> TURNS=new LinkedHashMap<>();
  private BuildConversation(){}
  private static void sweep(long now){TURNS.entrySet().removeIf(entry->now<entry.getValue().time||now-entry.getValue().time>=WINDOW);}
+ private static String raw(String human){return human==null?"":human;}
  private static boolean clarification(String text){
   if(text.length()>120||text.matches("(?s).*[\"'«»„“”`?\\n\\r].*")||text.matches("(?s).*(?<!\\p{L})(?:не|нет|без|отмена|отмени|стоп|not|no|never|cancel|stop|если|if|потом|later)(?!\\p{L}).*"))return false;
   return text.matches("(?:из|of|from|out of) [\\p{L}\\p{N}_:/-]+(?: [\\p{L}\\p{N}_:/-]+){0,4}[.!]*")
    ||text.matches("(?:здесь|тут|рядом со мной|возле меня|на этой площадке|here|right here|near me|next to me|on this spot)[.!]*");
  }
- public static synchronized void begin(UUID player,String human,boolean hasAppliedJournal,long now){sweep(now);if(player==null)return;String text=BuildLanguage.normalized(human);
+ public static synchronized void begin(UUID player,String human,boolean hasAppliedJournal,long now){sweep(now);if(player==null)return;if(human!=null&&human.length()>1024){TURNS.remove(player);return;}String text=BuildLanguage.normalized(human),current=raw(human);
   boolean undo=BuildLanguage.isUndo(human)&&hasAppliedJournal;boolean direct=BuildLanguage.isBuild(human);boolean followup=hasAppliedJournal&&BuildLanguage.isModification(human);
   Turn prior=TURNS.get(player);boolean continuation=!direct&&!hasAppliedJournal&&prior!=null&&!prior.pendingRequest.isEmpty()&&clarification(text);
-  String pending=!hasAppliedJournal?(direct?text:continuation?prior.pendingRequest:""):"";
+  String pending=!hasAppliedJournal?(direct?current:continuation?prior.pendingRequest:""):"";
   if(TURNS.size()>=MAX_PLAYERS&&!TURNS.containsKey(player))TURNS.remove(TURNS.keySet().iterator().next());
-  TURNS.put(player,new Turn(continuation?prior.time:now,text,direct||followup||continuation,undo,followup,hasAppliedJournal,pending));
+  TURNS.put(player,new Turn(continuation?prior.time:now,current,direct||followup||continuation,undo,followup,hasAppliedJournal,pending));
  }
- private static Turn current(UUID player,String human,long now){sweep(now);Turn turn=TURNS.get(player);return turn!=null&&turn.human.equals(BuildLanguage.normalized(human))?turn:null;}
+ private static Turn current(UUID player,String human,long now){sweep(now);Turn turn=TURNS.get(player);return turn!=null&&turn.human.equals(raw(human))?turn:null;}
  public static synchronized boolean allowsBuild(UUID player,String human,long now){Turn turn=current(player,human,now);return turn!=null&&turn.building;}
  public static synchronized boolean allowsUndo(UUID player,String human,long now){Turn turn=current(player,human,now);return turn!=null&&turn.undo;}
  public static synchronized String context(UUID player,String human,long now){return context(player,human,now,"en");}
  public static synchronized String context(UUID player,String human,long now,String language){Turn turn=current(player,human,now);if(turn==null)return "";
-  if(CompanionLanguage.isRussian(language)){
-   if(turn.undo)return "НАМЕРЕНИЕ СТРОИТЕЛЬСТВА: человек явно просит удалить последнюю постройку по журналу. Используй undo_build только для его проверенного журнала. Не утверждай, что ничего не строилось, и не удаляй чужие блоки.";
-   if(turn.followup)return "НАМЕРЕНИЕ СТРОИТЕЛЬСТВА: человек явно просит изменить последнюю постройку по журналу. Повторять «построй» не нужно: используй реальные границы журнала, сохраняя чужие блоки. Кодовое слово/дополнительное «да» не нужны.";
-   if(turn.building&&!turn.pendingRequest.isEmpty()&&!turn.pendingRequest.equals(turn.human))return "НАМЕРЕНИЕ СТРОИТЕЛЬСТВА: человек уточняет материал/место своей недавней просьбы: "+turn.pendingRequest+". Продолжи эту стройку с уточнением без повторного «построй»/подтверждения. Ранее завершённая постройка не подтверждена.";
-   if(turn.building)return "НАМЕРЕНИЕ СТРОИТЕЛЬСТВА: человек явно просит строить; просьба сделать красивый дом достаточна. Осмотри площадку и построй узнаваемый дом, не ограничивайся обещанием.";
-   return turn.journal?"НАМЕРЕНИЕ СТРОИТЕЛЬСТВА: журнал есть, но текущее сообщение не разрешает стройку/удаление. Одно «да» или беседа не разрешают менять мир.":"НАМЕРЕНИЕ СТРОИТЕЛЬСТВА: проверенный журнал применённых изменений в этом измерении не предоставлен. Кратко уточни неопределённую правку; не выдумывай прошлую постройку.";
-  }
   if(turn.undo)return "BUILD INTENT: The current human explicitly requests removing the last journaled build. Use undo_build for only this player's verified journal. Do not claim that nothing was built. Never delete unrelated world blocks.";
   if(turn.followup)return "BUILD INTENT: The current human explicitly requests modifying the last journaled build. This is valid building consent without repeating 'build'. Use actual journal bounds and preserve unrelated player blocks. Do not require a special keyword or an additional yes.";
   if(turn.building&&!turn.pendingRequest.isEmpty()&&!turn.pendingRequest.equals(turn.human))return "BUILD INTENT: This human message clarifies material or location for their recent construction request: "+turn.pendingRequest+". Continue that requested construction using the human's clarification; no repeated build keyword or confirmation is required. No previous completed build is established.";
