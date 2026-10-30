@@ -1,0 +1,23 @@
+{
+  "minecraft_version": "1.21.1",
+  "asset_index": "17",
+  "purpose": "Dedicated-server RU/EN registry labels; installed mod translations override these fallback keys",
+  "sources": [
+    {
+      "file": "vanilla_en_us.json",
+      "bytes": 434381,
+      "sha256": "0e124270d9beb3fa80ef98a0d8eefaecee6b87db6416ab55ba286f2525ae0201",
+      "sha1": "7b78a6b37e77dcd1a4f0b06fd484ef95be27d3ad",
+      "source": "Installed official Minecraft 1.21.1 client extra.jar assets/minecraft/lang/en_us.json",
+      "official_asset_url": null
+    },
+    {
+      "file": "vanilla_ru_ru.json",
+      "bytes": 774918,
+      "sha256": "2052b9fe8d8f9bd1d7dbf5e9a048eb5a1fcf90e6681769a24802b77d142491dc",
+      "sha1": "9d91452322bb46c366215d6ac17c0ca1a06a168b",
+      "source": "Installed official asset index17: minecraft/lang/ru_ru.json",
+      "official_asset_url": "https://resources.download.minecraft.net/9d/9d91452322bb46c366215d6ac17c0ca1a06a168b"
+    }
+  ]
+}

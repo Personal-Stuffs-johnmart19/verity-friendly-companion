@@ -1,0 +1,31 @@
+{
+  "provider": "google",
+  "google_model": "gemini-3.8-flash-tts",
+  "google_voice": "Achird",
+  "local_fallback": false,
+  "russian_model": "v5_ru",
+  "russian_speaker": "eugene",
+  "english_model": "v3_en",
+  "english_speaker": "en_0",
+  "whisper_model": "small",
+  "threads": 4,
+  "port": 8766,
+  "search_model": "gemini-3.1-flash-lite",
+  "chat_model": "gemini-3.1-flash-lite",
+  "simple_chat_model": "gemini-3.1-flash-lite",
+  "drama3_directory": "../verity-tts",
+  "playback_mode": "complete",
+  "google_free_project_confirmed": false,
+  "google_tts_models": [
+    "gemini-3.8-flash-tts",
+    "gemini-3.8-flash-lite-tts",
+    "gemini-3.1-flash-tts-preview",
+    "gemini-2.5-flash-preview-tts"
+  ],
+  "stt_language": "auto",
+  "stt_beam_size": 5,
+  "stt_engine": "faster-whisper",
+  "stt_rocm_python": "C:/path/to/rocm-environment/Scripts/python.exe",
+  "stt_rocm_model": "C:/path/to/verity-service/models/whisper-small-rocm",
+  "stt_cpu_fallback": true
+}

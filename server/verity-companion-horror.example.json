@@ -1,0 +1,14 @@
+{
+  "mode": "off",
+  "bossMode": "mood",
+  "moodThreshold": 0,
+  "intervalSeconds": 30,
+  "cooldownSeconds": 180,
+  "bossCooldownSeconds": 600,
+  "durationSeconds": 15,
+  "chancePercent": 20,
+  "darkness": true,
+  "fog": true,
+  "sounds": true,
+  "stalker": true
+}

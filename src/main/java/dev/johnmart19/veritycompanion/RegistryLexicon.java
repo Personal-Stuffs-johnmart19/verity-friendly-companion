@@ -1,0 +1,39 @@
+package dev.johnmart19.veritycompanion;
+
+import com.google.gson.*;
+import java.util.*;
+import net.minecraft.core.Registry;
+import net.minecraft.network.chat.contents.TranslatableContents;
+
+/** Names belong only to registered IDs. Typo similarity suggests choices and never authorizes a mutation. */
+public final class RegistryLexicon {
+ public record Entry(String id,String translationKey,String serverLabel){}
+ public record Match(String id,String english,String russian,String descriptionEnglish,String descriptionRussian,int score,String match){}
+ private record Named(Entry entry,String en,String ru,String descriptionEn,String descriptionRu,List<String> names,List<List<String>> stems){}
+ private record Cached(Object registry,Object locales,RegistryLexicon lexicon){}
+ private static final Map<String,Cached> CACHE=new HashMap<>();
+ private final List<Named> rows;private final boolean localeDataAvailable;
+ public RegistryLexicon(Collection<Entry> entries,Map<String,String> en,Map<String,String> ru){this(entries,en,ru,true);}
+ private RegistryLexicon(Collection<Entry> entries,Map<String,String> en,Map<String,String> ru,boolean available){localeDataAvailable=available;List<Named> result=new ArrayList<>();Set<String> ids=new HashSet<>();for(Entry entry:entries){if(!ids.add(entry.id()))continue;String english=en.getOrDefault(entry.translationKey(),entry.serverLabel()),russian=ru.getOrDefault(entry.translationKey(),"");LinkedHashSet<String> names=new LinkedHashSet<>();for(String value:List.of(english,russian,entry.serverLabel()))if(!value.isBlank())names.add(ItemHints.key(value));List<List<String>> stems=names.stream().map(RegistryLexicon::stems).toList();result.add(new Named(entry,english,russian,description(en,entry.translationKey()),description(ru,entry.translationKey()),List.copyOf(names),stems));}rows=result.stream().sorted(Comparator.comparing(row->row.entry.id())).toList();}
+ private static String description(Map<String,String> labels,String key){StringJoiner result=new StringJoiner("\n");for(String suffix:List.of(".description",".desc",".tooltip")){String value=labels.get(key+suffix);if(value!=null)result.add(value);}return result.toString();}
+ private static List<String> stems(String query){return Arrays.stream(query.split(" ")).map(ItemCatalog::russianStem).sorted().toList();}
+ public static synchronized RegistryLexicon forRegistry(String kind,Registry<?> registry){var labels=ServerItemCatalog.locales();Cached cached=CACHE.get(kind);if(cached!=null&&cached.registry==registry&&cached.locales==labels)return cached.lexicon;List<Entry> entries=new ArrayList<>();for(var id:registry.keySet()){Object value=registry.get(id);String prefix=switch(kind){case "items"->"item";case "blocks"->"block";case "effects"->"effect";case "enchantments"->"enchantment";case "entities"->"entity";case "biomes"->"biome";case "structures"->"structure";case "fluids"->"fluid";default->kind;};String key=prefix+"."+id.getNamespace()+"."+id.getPath().replace('/','.');String fallback=id.toString();try{
+   if(value instanceof net.minecraft.world.item.Item item){key=item.getDescriptionId();fallback=item.getDescription().getString();}
+   else if(value instanceof net.minecraft.world.level.block.Block block){key=block.getDescriptionId();fallback=block.getName().getString();}
+   else if(value instanceof net.minecraft.world.effect.MobEffect effect){key=effect.getDescriptionId();fallback=effect.getDisplayName().getString();}
+   else if(value instanceof net.minecraft.world.entity.EntityType<?> entity){key=entity.getDescriptionId();fallback=entity.getDescription().getString();}
+   else if(value instanceof net.minecraft.world.item.enchantment.Enchantment enchantment){fallback=enchantment.description().getString();if(enchantment.description().getContents() instanceof TranslatableContents translatable)key=translatable.getKey();}
+  }catch(RuntimeException|LinkageError unavailable){/* Registered ID and conventional locale key remain usable. */}entries.add(new Entry(id.toString(),key,fallback));}
+  RegistryLexicon lexicon=new RegistryLexicon(entries,labels==null?Map.of():labels.english(),labels==null?Map.of():labels.russian(),labels!=null);CACHE.put(kind,new Cached(registry,labels,lexicon));return lexicon;
+ }
+ public static synchronized void clear(){CACHE.clear();}
+ public List<Match> search(String raw){String original=RecipeCatalogue.text(raw,240).strip().toLowerCase(Locale.ROOT);String query=ItemHints.key(original);List<String> queryStems=stems(query);List<Match> result=new ArrayList<>();for(Named row:rows){int score=0;String match="";if(query.isBlank()){score=1;match="registry";}else if(row.entry.id().equals(original)){score=2000;match="registered_id";}else if(row.entry.id().equals("minecraft:"+original)){score=1000;match="vanilla_short_id";}else if(row.names.contains(query)){score=1000;match="exact_name";}else if(row.stems.contains(queryStems)){score=200;match="inflected_full_name";}else if(row.entry.id().contains(query)||row.names.stream().anyMatch(name->Arrays.stream(query.split(" ")).allMatch(name::contains))){score=80;match="substring_suggestion";}if(score>0)result.add(match(row,score,match));}
+  if(result.isEmpty()&&query.length()>=5&&query.length()<=80){for(Named row:rows){int best=0;for(String name:row.names){int max=query.length()>8?2:1,distance=distance(query,name,max);if(distance<=max)best=Math.max(best,50-distance);}if(best>0)result.add(match(row,best,"typo_suggestion_only"));}}
+  result.sort(Comparator.comparingInt(Match::score).reversed().thenComparing(Match::id));return result;
+ }
+ private static Match match(Named row,int score,String match){return new Match(row.entry.id(),row.en,row.ru,row.descriptionEn,row.descriptionRu,score,match);}
+ public Optional<String> resolveUnique(String query){List<Match> found=search(query);if(found.isEmpty()||found.getFirst().score()<200||found.size()>1&&found.get(0).score()==found.get(1).score())return Optional.empty();return Optional.of(found.getFirst().id());}
+ public String page(String query,int offset,int requested){List<Match> matches=search(query);int limit=RecipeCatalogue.limit(requested),start=Math.clamp(offset,0,matches.size());JsonObject out=RecipeCatalogue.page(matches.size(),start,limit);JsonArray entries=new JsonArray();for(Match match:matches.subList(start,Math.min(matches.size(),start+limit))){JsonObject row=new JsonObject();row.addProperty("id",match.id());row.addProperty("en",RecipeCatalogue.text(match.english(),240));row.addProperty("ru",RecipeCatalogue.text(match.russian(),240));row.addProperty("match",match.match());row.addProperty("description_en",RecipeCatalogue.text(match.descriptionEnglish(),160));row.addProperty("description_ru",RecipeCatalogue.text(match.descriptionRussian(),160));entries.add(row);}out.add("entries",entries);out.addProperty("locale_data_available",localeDataAvailable);out.addProperty("interpretation","Only actual registered IDs. Exact/full inflected names may resolve only when unique. Substring/typo matches are suggestions; ask which one. Missing translations/descriptions do not imply absent mechanics.");return out.toString();}
+ /** Banded edit distance with a small cutoff: no quadratic work for arbitrary long input. */
+ static int distance(String left,String right,int maximum){if(Math.abs(left.length()-right.length())>maximum)return maximum+1;int[] prior=new int[right.length()+1],next=new int[right.length()+1];for(int j=0;j<=right.length();j++)prior[j]=j;for(int i=1;i<=left.length();i++){int from=Math.max(1,i-maximum),to=Math.min(right.length(),i+maximum);next[0]=i;if(from>1)next[from-1]=maximum+1;if(to<right.length())next[to+1]=maximum+1;int minimum=maximum+1;for(int j=from;j<=to;j++){next[j]=Math.min(prior[j]+1,Math.min(next[j-1]+1,prior[j-1]+(left.charAt(i-1)==right.charAt(j-1)?0:1)));minimum=Math.min(minimum,next[j]);}if(minimum>maximum)return maximum+1;int[] swap=prior;prior=next;next=swap;}return prior[right.length()];}
+}

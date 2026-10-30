@@ -1,0 +1,8 @@
+package dev.johnmart19.veritycompanion;
+import java.util.Locale;
+final class PersonaPolicy {
+ static String normalize(String value){return switch(value.strip().toLowerCase(Locale.ROOT)){case "male","he","мужской","он"->"male";case "female","she","женский","она"->"female";case "neutral","нейтральный"->"neutral";default->throw new IllegalArgumentException("male / female / neutral");};}
+ static String context(String gender){return switch(normalize(gender)){case "female"->"Verity uses female identity and feminine Russian self-reference (поняла, готова).";case "neutral"->"Verity uses neutral identity; avoid gendered Russian past tense about yourself, use готово/сделано.";default->"Verity uses male identity and masculine Russian self-reference (понял, готов).";}+" This is the companion's chosen persona for this player, not the player's gender. TTS voice is configured separately.";}
+ static String role(String value){return switch(value.strip().toLowerCase(Locale.ROOT)){case "orb","smiley"->"orb";case "protector","guardian","village_guardian"->"protector";case "anime","anime_girl"->"anime";default->throw new IllegalArgumentException("orb / protector / anime");};}
+ static String roleContext(String value){return switch(role(value)){case "protector"->"Personality role: calm village guardian, attentive to dangers, equipment and defending homes. Help through actual supported actions; never pretend to have attacked or protected anyone.";case "anime"->"Personality role: lively anime-inspired fantasy companion, expressive, warm and capable, without forced catchphrases. This is a conversational role, not proof of an installed humanoid mesh.";default->"Personality role: cheerful curious floating smiley friend, a resident of this Minecraft world.";};}
+}

@@ -1,0 +1,32 @@
+package dev.johnmart19.veritycompanion;
+
+import java.util.*;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
+
+/** Explicit player-scoped companion recovery. Never executes console text. */
+public final class CompanionPresence {
+ static final String OWNER="verity_friendly_owner";
+ static boolean friendly(Entity e){String id=BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).toString();return id.equals("verity:verity")||id.equals("verity:box");}
+ static UUID owner(Entity e){var tag=RivalController.data(e);return tag.hasUUID(OWNER)?tag.getUUID(OWNER):null;}
+ static List<Entity> loaded(ServerPlayer p){List<Entity> result=new ArrayList<>();for(ServerLevel level:p.getServer().getAllLevels())for(Entity e:level.getAllEntities())if(e.isAlive()&&friendly(e))result.add(e);return result;}
+ static String position(Entity e){return BuiltInRegistries.ENTITY_TYPE.getKey(e.getType())+" UUID="+e.getUUID()+" dimension="+e.level().dimension().location()+" position="+e.blockPosition();}
+ static String find(ServerPlayer p){StringBuilder out=new StringBuilder();int count=0;for(Entity e:loaded(p)){UUID owner=owner(e);if(owner!=null&&!owner.equals(p.getUUID()))continue;out.append(position(e)).append(owner==null?" shared":" yours").append('\n');if(++count==20)break;}return count==0?Relations.tr(p,"В загруженных чанках Verity и коробка не найдены. Незагруженные области не проверялись. /companion summon — создать помощника рядом.","No Verity or box found in loaded chunks. Unloaded areas were not searched. /companion summon creates a nearby companion."):out.toString();}
+ static Entity select(ServerPlayer p){List<Entity> entities=loaded(p);entities.sort(Comparator.comparingInt(e->BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).getPath().equals("verity")?0:1));return entities.stream().filter(e->p.getUUID().equals(owner(e))).findFirst().orElseGet(()->entities.stream().filter(e->owner(e)==null&&e.level()==p.level()&&e.distanceToSqr(p)<=64*64).min(Comparator.comparingDouble(e->e.distanceToSqr(p))).orElse(null));}
+ static Entity ownedBody(ServerPlayer p){Entity nearest=null;double distance=24*24;for(Entity e:p.serverLevel().getAllEntities()){double next=e.distanceToSqr(p);if(e.isAlive()&&friendly(e)&&p.getUUID().equals(owner(e))&&BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).getPath().equals("verity")&&next<=distance){nearest=e;distance=next;}}return nearest;}
+ static void safePosition(ServerPlayer p,Entity e){ServerLevel level=p.serverLevel();for(int r=2;r<=6;r++)for(int y=-2;y<=3;y++)for(int x=-r;x<=r;x++)for(int z=-r;z<=r;z++){if(Math.abs(x)!=r&&Math.abs(z)!=r)continue;BlockPos pos=p.blockPosition().offset(x,y,z);if(!level.hasChunkAt(pos)||!level.getWorldBorder().isWithinBounds(pos)||!level.getBlockState(pos.below()).isSolid()||hazard(level,pos.below())||hazard(level,pos)||hazard(level,pos.above())||!level.getFluidState(pos).isEmpty()||!level.getFluidState(pos.above()).isEmpty())continue;e.moveTo(pos.getX()+.5,pos.getY(),pos.getZ()+.5,p.getYRot(),0);if(level.noCollision(e,e.getBoundingBox()))return;}throw new IllegalStateException(Relations.tr(p,"Рядом нет свободного безопасного места. Выйди на открытую площадку.","No safe space nearby. Move to an open area."));}
+ static void tag(ServerPlayer p,Entity e){RivalController.data(e).putUUID(OWNER,p.getUUID());if(e instanceof Mob mob){mob.setPersistenceRequired();mob.setTarget(null);}e.setCustomName(Component.literal(Relations.name(p)));}
+ static String bring(ServerPlayer p,boolean create,boolean box){Entity existing=select(p);if(existing!=null){if(box)return Relations.tr(p,"Помощник или коробка уже существуют: ","A companion or box already exists: ")+position(existing);ServerLevel destination=p.serverLevel();Entity probe=existing.getType().create(destination);if(probe==null)throw new IllegalStateException("Cannot check safe companion placement");safePosition(p,probe);Entity moved=existing;if(existing.level()!=destination){moved=existing.changeDimension(new net.minecraft.world.level.portal.DimensionTransition(destination,probe.position(),net.minecraft.world.phys.Vec3.ZERO,p.getYRot(),0,net.minecraft.world.level.portal.DimensionTransition.DO_NOTHING));if(moved==null)throw new IllegalStateException("Companion dimension transfer failed");}else moved.teleportTo(probe.getX(),probe.getY(),probe.getZ());tag(p,moved);if(moved instanceof Mob mob){mob.setNoAi(false);mob.getNavigation().stop();}return Relations.tr(p,"Я рядом: ","I am nearby: ")+position(moved);}
+  if(!create)return find(p);
+  // Unloaded entities cannot be ruled out; creation is explicit, never automatic each login.
+  String id=box?"verity:box":"verity:verity";EntityType<?> type=BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.parse(id));if(type==null)throw new IllegalStateException("Missing registered companion type: "+id);Entity entity=type.create(p.serverLevel());if(entity==null)throw new IllegalStateException("Cannot create "+id);safePosition(p,entity);tag(p,entity);if(!p.serverLevel().addFreshEntity(entity))throw new IllegalStateException("Companion spawn rejected");return Relations.tr(p,"Создан рядом: ","Created nearby: ")+position(entity);
+ }
+ static String waitHere(ServerPlayer p){CompanionFollow.stop(p);Entity e=select(p);if(e==null)return find(p);if(e instanceof Mob mob){mob.getNavigation().stop();mob.setTarget(null);mob.setNoAi(true);}return Relations.tr(p,"Остановился: ","Stopped: ")+position(e);}
+ static boolean hazard(ServerLevel level,BlockPos pos){String id=BuiltInRegistries.BLOCK.getKey(level.getBlockState(pos).getBlock()).toString();return id.matches(".*(magma|fire|campfire|cactus|berry_bush|wither_rose|lava|spike|acid|toxic|radiation).*");}
+ static boolean explicit(String action,String text){return CompanionPresencePolicy.explicit(action,text);}
+ static String action(ServerPlayer p,String action,String original){if(action.equals("find"))return find(p);if(!explicit(action,ToolIntent.unaddress(original,Relations.name(p))))throw new IllegalArgumentException("Player must explicitly request this companion action");return switch(action){case "follow"->CompanionFollow.set(p,true);case "come"->bring(p,false,false);case "summon"->bring(p,true,false);case "box"->bring(p,true,true);case "stay"->waitHere(p);default->throw new IllegalArgumentException("Unknown companion action");};}
+}

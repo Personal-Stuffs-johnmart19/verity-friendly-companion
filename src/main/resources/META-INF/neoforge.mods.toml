@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT (addon code only)"
+[[mods]]
+modId="verity_companion"
+version="1.2.0-beta.20"
+displayName="Verity Friendly Companion"
+authors="johnmart19"
+description='''Server-hosted Gemini companion, friendly Verity behavior and server-hosted RU/EN voice. Clients require no keys or Python.'''
+[[dependencies.verity_companion]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.250,21.2)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.verity_companion]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+[[dependencies.verity_companion]]
+modId="verity"
+type="required"
+versionRange="[3.4.1]"
+ordering="AFTER"
+side="BOTH"
